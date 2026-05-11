@@ -94,14 +94,31 @@ System.out.println("Ubicación "+" "+ (i+1)+ "precio base: "+ precioUbicaciones[
     return precioUbicaciones;
 }
 
-/*public double [] escogerUbicacion (double[] precioUbicaciones){
+public double escogerUbicacion (double[] precioUbicaciones){
     double precioBase = 0;
-    for(int i = 0;i< precioUbicaciones.length; i++){
+    int ubicacionEscogida = 0;
+
+    System.out.println("Escoger ubicación");
+    System.out.println("digite 1 para ubicación #1");
+    System.out.println("digite 2 para ubicación #2");
+    System.out.println("digite 3 para ubicación #3");
+    ubicacionEscogida = scanner.nextInt();
+
+    if (ubicacionEscogida==1){
+precioBase = precioUbicaciones[0];
         
+        
+    }else if (ubicacionEscogida==2){
+precioBase = precioUbicaciones[1];
+    
+    }else if (ubicacionEscogida==3){
+precioBase = precioUbicaciones[2];
+     
     }
+    System.out.println("Monto añadido: "+ precioBase);
+    return precioBase;
 
-} */
-
+}
 
 public static void main(String[] args){
 
@@ -112,7 +129,7 @@ public static void main(String[] args){
     double[]ubicacion = new double[3];
     ubicacion = tarifa.definirUbicacion(ubicacion);
     tarifa.mostrarUbicacion(ubicacion);
-    
+    double precioSeleccionado = tarifa.escogerUbicacion(ubicacion);
     double precioFinal = tarifa.validarTemporadaTuristica();
     System.out.println("Precio final: " + precioFinal);
     
