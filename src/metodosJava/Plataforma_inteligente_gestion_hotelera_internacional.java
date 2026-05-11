@@ -43,22 +43,44 @@ System.out.println("5. Si la reserva es en una FECHA DISTÍNTA ");
 temporada = scanner.nextDouble();
     switch (temporada) {
         case 1: 
-        System.out.println("la reserva es en DICIEMBRE/ENERO, el precio aumenta 20%");
-        preciohabitacion = preciohabitacion * 0.20;
+        System.out.println("Es una temporada turística");
+        System.out.println("la reserva es en DICIEMBRE/ENERO, el precio aumenta 30%");
+        preciohabitacion = preciohabitacion + ( preciohabitacion* 0.30 );
         break;
 
         case 2:
-    System.out.println("la reserva es en SEMANA SANTA, el precio aumenta 20%");
-    preciohabitacion = preciohabitacion * 0.20;
+        System.out.println("Es una temporada turística");
+        System.out.println("la reserva es en SEMANA SANTA, el precio aumenta 20%");
+        preciohabitacion = preciohabitacion + ( preciohabitacion* 0.20 );
         break;
 
         case 3:
-            
+       System.out.println("Es una temporada turística");
+       System.out.println("la reserva es en JUNIO/JULIO, el precio  aumenta 35%");
+        preciohabitacion = preciohabitacion + ( preciohabitacion* 0.35 );
+        break;
+
+       case 4:
+       System.out.println("Es una temporada turística");
+       System.out.println("la reserva es en un DÍA FESTÍVO , el precio  aumenta 10%");
+        preciohabitacion = preciohabitacion + ( preciohabitacion* 0.10 );
+        break;
+
+        case 5:
+       System.out.println("NO Es una temporada turística");
+       System.out.println(" el precio  aumenta NO aumenta");
+        break;
 
     }
-    
+    return preciohabitacion;
 }
 
+public static void main(String[] args){
+    Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
+
+    double precioFinal = tarifa.validarTemporadaTuristica();
+    
+}
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
  // temporada, demanda, ubicación y eventos especiales.
