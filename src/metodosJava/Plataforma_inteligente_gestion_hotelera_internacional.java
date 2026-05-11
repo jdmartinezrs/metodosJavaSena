@@ -87,6 +87,21 @@ System.out.println("Ingrese el precio base de la ubicación # " + (i+1));
     return precioUbicaciones;
 }
 
+public double []mostrarUbicacion ( double [] precioUbicaciones){
+    for(int i = 0 ; i< precioUbicaciones.length; i++){
+System.out.println("Ubicación "+" "+ (i+1)+ "precio base: "+ precioUbicaciones[i]);
+    }
+    return precioUbicaciones;
+}
+
+/*public double [] escogerUbicacion (double[] precioUbicaciones){
+    double precioBase = 0;
+    for(int i = 0;i< precioUbicaciones.length; i++){
+        
+    }
+
+} */
+
 
 public static void main(String[] args){
 
@@ -96,6 +111,8 @@ public static void main(String[] args){
     int cantidad = scanner.nextInt();
     double[]ubicacion = new double[cantidad];
     ubicacion = tarifa.definirUbicacion(ubicacion);
+    tarifa.mostrarUbicacion(ubicacion);
+    
     double precioFinal = tarifa.validarTemporadaTuristica();
     System.out.println("Precio final: " + precioFinal);
     
