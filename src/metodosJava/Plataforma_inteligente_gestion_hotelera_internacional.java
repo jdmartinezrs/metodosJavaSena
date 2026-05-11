@@ -80,7 +80,7 @@ System.out.println("5. Si la reserva es en una FECHA DISTÍNTA ");
 
 public double []definirUbicacion( double[] precioUbicaciones){
     for(int i = 0; i<precioUbicaciones.length; i++){
-System.out.println("Ingrese el precio de la ubicación # " + (i+1));
+System.out.println("Ingrese el precio base de la ubicación # " + (i+1));
  precioUbicaciones[i]= scanner.nextDouble();
   
     }
@@ -92,12 +92,13 @@ public static void main(String[] args){
 
     Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
     Scanner scanner = new Scanner(System.in);
-    double precioFinal = tarifa.validarTemporadaTuristica();
-    System.out.println("Precio final: " + precioFinal);
     System.out.println("Ingrese el número de ubicaciones disponibles ");
     int cantidad = scanner.nextInt();
     double[]ubicacion = new double[cantidad];
     ubicacion = tarifa.definirUbicacion(ubicacion);
+    double precioFinal = tarifa.validarTemporadaTuristica();
+    System.out.println("Precio final: " + precioFinal);
+    
 }
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
