@@ -120,6 +120,12 @@ precioBase = precioUbicaciones[2];
 
 }
 
+public double calcularPrecioHabitacionUbicacion (double preciohabitacion, double precioBase ){
+    double precioHabitacionUbicacion = preciohabitacion + precioBase ;
+return precioHabitacionUbicacion;
+}
+
+
 public static void main(String[] args){
 
     Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
@@ -132,7 +138,8 @@ public static void main(String[] args){
     double precioSeleccionado = tarifa.escogerUbicacion(ubicacion);
     double precioFinal = tarifa.validarTemporadaTuristica();
     System.out.println("Precio final: " + precioFinal);
-    
+    double precioFinalConUbicacion = tarifa.calcularPrecioHabitacionUbicacion(precioSeleccionado,precioFinal);
+    System.out.println("Precio incluyendo monto base de ubicación equivale a: "+  precioFinalConUbicacion);
 }
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
