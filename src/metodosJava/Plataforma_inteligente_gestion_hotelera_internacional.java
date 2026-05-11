@@ -78,12 +78,25 @@ System.out.println("5. Si la reserva es en una FECHA DISTÍNTA ");
     return preciohabitacion;
 }
 
+public int [] definirUbicacion( int[] ubicaciones){
+    
+    for(int i = 0; i<ubicaciones.length; i++){
+System.out.println("Ingrese ubicación # " + (i+1));
+  ubicaciones[i]= scanner.nextInt();
+    }
+    return ubicaciones;
+}
+
 public static void main(String[] args){
+
     Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
-
+    Scanner scanner = new Scanner(System.in);
     double precioFinal = tarifa.validarTemporadaTuristica();
-
-     System.out.println("Precio final: " + precioFinal);
+   System.out.println("Precio final: " + precioFinal);
+   System.out.println("Ingrese el número de ubicaciones disponibles ");
+int cantidad = scanner.nextInt();
+    int[] ubicacion = new int[cantidad];
+    ubicacion = tarifa.definirUbicacion(ubicacion);
 }
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
