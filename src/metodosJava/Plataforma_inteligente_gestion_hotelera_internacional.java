@@ -7,28 +7,30 @@ public class Plataforma_inteligente_gestion_hotelera_internacional {
  // de administrar reservas, habitaciones, servicios adicionales y operaciones financieras
  //  en múltiples hoteles ubicados en diferentes países.
  // 
+ Scanner  scanner = new Scanner (System.in) ;
+
 public String [][]reservaDeHabitaciones( String [][] habitaciones ){
 
     String[] campos =  {"nombre", "apellido", "cedula" , "Servicio adicional"};
 
-    for(int i = 0 ; habitaciones.length; i++){
+    for(int i = 0 ;i< habitaciones.length; i++){
 
         System.out.println("Registro de habitación " + (i+1));
         for(int j = 0 ; j< habitaciones[i].length; j ++){
 System.out.println("Ingrese su: " + campos[j] + ": " );
 habitaciones[i][j] = scanner.nextLine();
         }
-return habitaciones;
+
     }
  //El sistema debe registrar
  // información detallada de huéspedes, disponibilidad de habitaciones, 
  // temporadas turísticas, métodos de pago y servicios contratados, incluyendo restaurantes,
  //  transporte y actividades recreativas. 
-
+return habitaciones;
 
  }
- public souble validarTemporadaTuristica (double temporada){
-
+ public double validarTemporadaTuristica (){
+int temporada = 0;
 double preciohabitacion = 0;
 System.out.println("Ingrese el precio de la habitación ");
 preciohabitacion = scanner.nextDouble();
@@ -40,7 +42,8 @@ System.out.println("2. Si la reserva es en SEMANA SANTA ");
 System.out.println("3. Si la reserva es en JUNIO/JULIO ");
 System.out.println("4. Si la reserva es en un DÍA FESTÍVO ");
 System.out.println("5. Si la reserva es en una FECHA DISTÍNTA ");
-temporada = scanner.nextDouble();
+ temporada = scanner.nextInt();
+
     switch (temporada) {
         case 1: 
         System.out.println("Es una temporada turística");
@@ -79,7 +82,8 @@ public static void main(String[] args){
     Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
 
     double precioFinal = tarifa.validarTemporadaTuristica();
-    
+
+     System.out.println("Precio final: " + precioFinal);
 }
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
