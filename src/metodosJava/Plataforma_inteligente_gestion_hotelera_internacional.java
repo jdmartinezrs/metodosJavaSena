@@ -107,9 +107,9 @@ public static void main(String[] args){
 
     Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Ingrese el número de ubicaciones disponibles ");
-    int cantidad = scanner.nextInt();
-    double[]ubicacion = new double[cantidad];
+    System.out.println("Úbicaciones disponibles ");
+    //int cantidad = scanner.nextInt();
+    double[]ubicacion = new double[3];
     ubicacion = tarifa.definirUbicacion(ubicacion);
     tarifa.mostrarUbicacion(ubicacion);
     
