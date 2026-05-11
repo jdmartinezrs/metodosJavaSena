@@ -125,6 +125,12 @@ public double calcularPrecioHabitacionUbicacion (double preciohabitacion, double
 return precioHabitacionUbicacion;
 }
 
+public int realizarDescuentosPorMembresia (){
+
+    System.out.println("Descuentos por membrecía");
+
+
+}
 
 public static void main(String[] args){
 
@@ -139,7 +145,7 @@ public static void main(String[] args){
     double precioFinal = tarifa.validarTemporadaTuristica();
     System.out.println("Precio final: " + precioFinal);
     double precioFinalConUbicacion = tarifa.calcularPrecioHabitacionUbicacion(precioSeleccionado,precioFinal);
-    System.out.println("Precio incluyendo monto base de ubicación equivale a: "+  precioFinalConUbicacion);
+    System.out.println("Precio incluyendo monto base de ubicación equivale a: " +  precioFinalConUbicacion);
 }
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
