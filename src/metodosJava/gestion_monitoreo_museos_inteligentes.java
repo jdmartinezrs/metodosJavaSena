@@ -21,7 +21,7 @@ public class gestion_monitoreo_museos_inteligentes {
     // sospechosos o intentos de robo mediante inteligencia de video y sensores de movimiento.
     //  Cuando se detecte una anomalía, el sistema debe activar alarmas automáticas y notificar al personal de seguridad. 
     
-    
+
     // Otro desafío importante consiste en gestionar grandes cantidades de visitantes durante exposiciones especiales o temporadas turísticas. 
     // El programa debe calcular niveles de ocupación, optimizar rutas de recorrido y evitar aglomeraciones que puedan representar riesgos para las obras o los asistentes. 
     // Asimismo, la plataforma debe generar reportes completos sobre cantidad de visitantes, conservación de piezas, incidentes de seguridad y eficiencia operativa. 
@@ -77,6 +77,9 @@ Scanner scanner = new Scanner(System.in);
         System.out.println("!!!!! Se detectó una Anomalía !!!!!");
     }
 
+    //MÉTODOS DE CONTROL DE ACCESO 
+
+    
     public static void main(String[] args){
         gestion_monitoreo_museos_inteligentes  museos = new gestion_monitoreo_museos_inteligentes();
         Scanner scanner = new Scanner(System.in);
