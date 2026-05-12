@@ -1,4 +1,5 @@
 package metodosJava;
+import java.util.Scanner;
 
 public class gestion_monitoreo_museos_inteligentes {
   
@@ -14,14 +15,21 @@ public class gestion_monitoreo_museos_inteligentes {
     // a la luz que puedan afectar pinturas, esculturas o documentos antiguos.
     //  Además, 
 
-    // el sistema debe controlar accesos de visitantes, monitorear cámaras de seguridad y detectar comportamientos 
+    // el sistema debe controlar accesos de visitantes, 
+    
+    // monitorear cámaras de seguridad y detectar comportamientos 
     // sospechosos o intentos de robo mediante inteligencia de video y sensores de movimiento.
     //  Cuando se detecte una anomalía, el sistema debe activar alarmas automáticas y notificar al personal de seguridad. 
+    
+    
     // Otro desafío importante consiste en gestionar grandes cantidades de visitantes durante exposiciones especiales o temporadas turísticas. 
     // El programa debe calcular niveles de ocupación, optimizar rutas de recorrido y evitar aglomeraciones que puedan representar riesgos para las obras o los asistentes. 
     // Asimismo, la plataforma debe generar reportes completos sobre cantidad de visitantes, conservación de piezas, incidentes de seguridad y eficiencia operativa. 
     // El diseño debe ser modular y escalable para permitir futuras integraciones con realidad aumentada,
     // inteligencia artificial y sistemas interactivos avanzados para mejorar la experiencia cultural de los visitantes. 
+Scanner scanner = new Scanner(System.in);
+
+//Métodos de registro de obras 
 
     public String resgitrarObrasDeArte (String [] obrasDeArte){
     //registrar si posee valor historico
@@ -55,8 +63,30 @@ public class gestion_monitoreo_museos_inteligentes {
     public double revisionIluminacion (double iluminacion){
     }
 
-    public static void main(String[] args){
+    //Métodos de control y seguridad 
 
-        
+    public String [] registrodeNombreVisitante(String [] nombres ){
+
+    }
+
+    public boolean [] registroDeAnomalias (bolean anomalia){
+
+    }
+
+    public void alertaAnomalia (){
+        System.out.println("!!!!! Se detectó una Anomalía !!!!!");
+    }
+
+    public static void main(String[] args){
+        gestion_monitoreo_museos_inteligentes  museos = new gestion_monitoreo_museos_inteligentes();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bienvenidos al sistema de gestión y");
+        System.out.println("Monitoreo de museos inteligentes");
+        System.out.println("----------------------------------------------");
+        System.out.println("Ingrese el # 1 para registrar una obra de arte");
+        System.out.println("Ingrese el # 2 para controlar accesos de visitantes");
+        System.out.println("-----------------------------------------------");
+
     }
 }
