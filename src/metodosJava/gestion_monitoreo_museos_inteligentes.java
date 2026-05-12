@@ -63,19 +63,27 @@ return obras;
     }else{
         System.out.println("La temperatura es ideal");
     }
-
     return temperatura;
     }
 
     
-    public double registrarNivelesDeHumedad ( double humedad ){
+    public double []registrarNivelesDeHumedad (double[]  humedad ){
+//detectar cambios peligrosos de Humedad
+for (int i = 1; i < humedad.length ; i++ ){
+System.out.println("Ingrese los valores del punto" + (i+1));
+humedad[i]= scaner.nextDouble();
 
+if (i>0){
+if (humedad[i] - humedad[i-1]  > 30){
+    System.out.println("Se detectó un cambio peligroso de humedad en el punto: " + (i));
+}
+
+}
+}
+return humedad;
     }
 
-      public double revisionHumedad (double revisionTemperatura ){
-    //detectar cambios peligrosos de Humedad
-
-    }
+    
 
     public double registrarNivelesDeIluminacion (double iluminacion){
     }
