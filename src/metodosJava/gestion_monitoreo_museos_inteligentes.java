@@ -121,8 +121,8 @@ public class gestion_monitoreo_museos_inteligentes {
             System.out.println("Ingrese la edad del visitante");
             String edad= scanner.nextLine();
             System.out.println("Para dejar de registrar visitantes ingrese el #1 , de lo contrario escriba el #2");
-            scanner.nextInt();
              decicionRegistro = scanner.nextInt();
+             scanner.nextLine();
             visitantes[contador]= new VisitanteMuseo(nombre, documento, edad);
             contador++;
         }while(contador < aforoMaxSala && decicionRegistro != 1 );
@@ -130,10 +130,13 @@ return visitantes;
     }
 
     public void reportesVisitantes (VisitanteMuseo[] visitantes) {
+       
 for (int i = 0 ; i <visitantes.length ; i++){
+     if(visitantes[i]!= null){
 System.out.println(visitantes[i].nombre);
 System.out.println(visitantes[i].documento);
 System.out.println(visitantes[i].edad);
+}
 }
     }
 /*  public boolean[] registroDeAnomalias(bolean anomalia) {
