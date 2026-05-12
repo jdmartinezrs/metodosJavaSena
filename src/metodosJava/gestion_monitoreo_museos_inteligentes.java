@@ -84,7 +84,7 @@ public class gestion_monitoreo_museos_inteligentes {
         // detectar cambios peligrosos de Humedad
         for (int i = 1; i < humedad.length; i++) {
             System.out.println("Ingrese los valores del punto" + (i + 1));
-            humedad[i] = scaner.nextDouble();
+            humedad[i] = scanner.nextDouble();
 
             if (i > 0) {
                 if (humedad[i] - humedad[i - 1] > 30) {
@@ -111,6 +111,7 @@ public class gestion_monitoreo_museos_inteligentes {
          int aforoMaxSala = 10;
         VisitanteMuseo[] visitantes = new VisitanteMuseo[aforoMaxSala];
        int contador = 0;
+       int decicionRegistro ;
         do {
             System.out.println("Ingresar un visitante");
             System.out.println("Ingrese el nombre del visitante");
@@ -121,7 +122,7 @@ public class gestion_monitoreo_museos_inteligentes {
             String edad= scanner.nextLine();
             System.out.println("Para dejar de registrar visitantes ingrese el #1 , de lo contrario escriba el #2");
             scanner.nextInt();
-            int decicionRegistro = scanner.nextInt();
+             decicionRegistro = scanner.nextInt();
             visitantes[contador]= new VisitanteMuseo(nombre, documento, edad);
             contador++;
         }while(contador < aforoMaxSala && decicionRegistro != 1 );
@@ -135,10 +136,10 @@ System.out.println(visitantes[i].documento);
 System.out.println(visitantes[i].edad);
 }
     }
+/*  public boolean[] registroDeAnomalias(bolean anomalia) {
 
-    public boolean[] registroDeAnomalias(bolean anomalia) {
-
-    }
+    } */
+  
 
     public static void main(String[] args) {
         gestion_monitoreo_museos_inteligentes museos = new gestion_monitoreo_museos_inteligentes();
@@ -162,13 +163,14 @@ System.out.println(visitantes[i].edad);
             }
         } else if (decicionMenu == 2) {
             System.out.println("Bienvenido, registre un visitante");
-            VisitanteMuseo[] visitante = museos.registrarAccesoSala();
+            VisitanteMuseo[] visitantes = museos.registrarAccesoSala();
             System.out.println("Reporte de visitantes");
             museos.reportesVisitantes(visitantes);
 
         } else if (decicionMenu == 3) {
             System.out.println("Verificar condiciones de las salas ");
-            String temp = museos.registrarValidarTemperaturaDelAmbiente(opcion);
+double temperatura = 0;
+           double temp = museos.registrarValidarTemperaturaDelAmbiente(temperatura);
             System.out.println("Temperatura registrada: " + temp);
             System.out.println("Verificar que no existan cambios peligrosos de humedad");
             double humedad[] = new double[5];

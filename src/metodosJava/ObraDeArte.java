@@ -1,3 +1,4 @@
+package metodosJava;
 public class ObraDeArte {
 
     String nombre;

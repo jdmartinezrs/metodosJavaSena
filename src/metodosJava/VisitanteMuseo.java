@@ -1,3 +1,4 @@
+package metodosJava;
 public class VisitanteMuseo{
 
     String nombre;
