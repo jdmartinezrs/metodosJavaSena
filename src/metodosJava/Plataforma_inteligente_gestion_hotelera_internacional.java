@@ -125,13 +125,29 @@ public double calcularPrecioHabitacionUbicacion (double preciohabitacion, double
 return precioHabitacionUbicacion;
 }
 
-public int realizarDescuentosPorMembresia (){
+public double realizarDescuentosPorMembresia (double precioHabitacionUbicacion){
+
+    int decicionMembresia = 0;
 
     System.out.println("Descuentos por membrecía");
+    System.out.println("Seleccione 1: Si es cliente PREMIUM");
+    System.out.println("Seleccione 2: Si es cliente PLATINO");
+    System.out.println("Seleccione 3: Si es cliente BASIC");
+    decicionMembresia = scanner.nextInt();
+    switch (decicionMembresia ){
 
+        case 1:
+           precioHabitacionUbicacion -= precioHabitacionUbicacion* 0.20;
+            break;
+        case 2:
+           precioHabitacionUbicacion -= precioHabitacionUbicacion* 0.10;
+           break;
+           case 3 :
+            break;
+    }
 
+return precioHabitacionUbicacion;
 }
-
 public static void main(String[] args){
 
     Plataforma_inteligente_gestion_hotelera_internacional tarifa = new Plataforma_inteligente_gestion_hotelera_internacional();
@@ -146,6 +162,8 @@ public static void main(String[] args){
     System.out.println("Precio final: " + precioFinal);
     double precioFinalConUbicacion = tarifa.calcularPrecioHabitacionUbicacion(precioSeleccionado,precioFinal);
     System.out.println("Precio incluyendo monto base de ubicación equivale a: " +  precioFinalConUbicacion);
+    double precioConDescuento = tarifa.realizarDescuentosPorMembresia(precioFinalConUbicacion);
+    System.out.println("El precio con descuento por membrecía es : "+ precioConDescuento);
 }
  
  //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
