@@ -42,12 +42,21 @@ Scanner scanner = new Scanner(System.in);
     }
 
     public double registrarTemperaturaDelAmbiente (double temperatura){
-    double temperaturaAmbienteIdeal = 0;
-
+   
+        System.out.println("Ingrese la temperatura actual")
+        temperatura = scanner.nextDouble();
+        return temperatura;
     }
 
-    public double revisionTemperatura (double revisionTemperatura ){
+    public double revisionTemperatura (double temperatura ){
     //detectar cambios peligrosos de temperatura
+ double temperaturaAmbienteIdeal = 20;
+
+ if(temperatura > 20 ){
+    System.out.println("!La temperatura está alta para las obras de arte"){
+        
+    }
+ }
 
     }
     
