@@ -95,23 +95,12 @@ public class gestion_monitoreo_museos_inteligentes {
         }
         return humedad;
     }
-
-    public double registrarNivelesDeIluminacion(double iluminacion) {
+/* public double registrarRevisionNivelesDeIluminacion(double iluminacion) {
 
     }
-
-    public double revisionIluminacion(double iluminacion) {
-    }
-
+ */
+   
     // Métodos de control y seguridad
-
-    public String[] registrodeNombreVisitante(String[] nombres) {
-
-    }
-
-    public boolean[] registroDeAnomalias(bolean anomalia) {
-
-    }
 
     public void alertaAnomalia() {
         System.out.println("!!!!! Se detectó una Anomalía !!!!!");
@@ -139,7 +128,15 @@ public class gestion_monitoreo_museos_inteligentes {
 return visitantes;
     }
 
-    public int reportesVisitantes() {
+    public void reportesVisitantes (VisitanteMuseo[] visitantes) {
+for (int i = 0 ; i <visitantes.length ; i++){
+System.out.println(visitantes[i].nombre);
+System.out.println(visitantes[i].documento);
+System.out.println(visitantes[i].edad);
+}
+    }
+
+    public boolean[] registroDeAnomalias(bolean anomalia) {
 
     }
 
@@ -164,8 +161,10 @@ return visitantes;
                 System.out.println(obrasRegistradas[i].tipoObra);
             }
         } else if (decicionMenu == 2) {
-
             System.out.println("Bienvenido, registre un visitante");
+            VisitanteMuseo[] visitante = museos.registrarAccesoSala();
+            System.out.println("Reporte de visitantes");
+            museos.reportesVisitantes(visitantes);
 
         } else if (decicionMenu == 3) {
             System.out.println("Verificar condiciones de las salas ");
