@@ -147,6 +147,7 @@ public double realizarDescuentosPorMembresia (double precioHabitacionUbicacion){
     }
 
 return precioHabitacionUbicacion;
+
 }
 public static void main(String[] args){
 
@@ -166,42 +167,4 @@ public static void main(String[] args){
     System.out.println("El precio con descuento por membrecía es : "+ precioConDescuento);
 }
  
- //La complejidad del problema aumenta porque las tarifas cambian dinámicamente según 
- // temporada, demanda, ubicación y eventos especiales.
- 
- //  El sistema debe calcular 
- // automáticamente precios actualizados, aplicar descuentos personalizados
- //  y evitar problemas de sobreventa de habitaciones.
- // 
- 
- //Además, debe detectar 
- // inconsistencias como reservas duplicadas, pagos incompletos o cancelaciones 
- // fraudulentas. 
- // 
- 
- //Otro desafío importante consiste en coordinar la disponibilidad
- //  de habitaciones en tiempo real entre plataformas digitales, agencias de viaje 
- // y sistemas internos del hotel.
- // 
- 
- //El programa también debe controlar el estado de 
- // limpieza y mantenimiento de cada habitación, generando alertas cuando se detecten 
- // retrasos en servicios operativos. Además,
- // 
- 
- //el sistema debe analizar el comportamiento
- //  de los clientes para generar recomendaciones personalizadas y mejorar la experiencia 
- // de hospedaje.
- // 
- 
- 
- //También debe producir reportes financieros sobre ingresos, ocupación
- //  hotelera, rentabilidad por temporada y nivel de satisfacción de huéspedes.
-
-
- //  La plataforma debe diseñarse de forma modular y escalable para permitir 
- // futuras integraciones con inteligencia artificial, reconocimiento facial, 
- // asistentes virtuales y sistemas automatizados de atención al cliente 
- // sin necesidad de reconstruir completamente el software. 
-
 }
