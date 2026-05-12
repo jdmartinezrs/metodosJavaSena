@@ -53,24 +53,20 @@ Scanner scanner = new Scanner(System.in);
 return obras;
     }
 
-    public double registrarTemperaturaDelAmbiente (double temperatura){
-   
+    public double registrarValidarTemperaturaDelAmbiente (double temperatura){
+        double temperaturaAmbienteIdeal = 20;
         System.out.println("Ingrese la temperatura actual");
         temperatura = scanner.nextDouble();
-        return temperatura;
-    }
-
-    public double revisionTemperatura (double temperatura ){
-    //detectar cambios peligrosos de temperatura
- double temperaturaAmbienteIdeal = 20;
-
- if(temperatura > 20 ){
-    System.out.println("!La temperatura está alta para las obras de arte"){
         
+         if(temperatura > temperaturaAmbienteIdeal  ){
+    System.out.println("!La temperatura está alta para las obras de arte"); 
+    }else{
+        System.out.println("La temperatura es ideal");
     }
- }
 
+    return temperatura;
     }
+
     
     public double registrarNivelesDeHumedad ( double humedad ){
 
@@ -121,7 +117,7 @@ public int reportesVisitantes (){
         System.out.println("----------------------------------------------");
         System.out.println("Ingrese el # 1 para registrar una obra de arte");
         System.out.println("Ingrese el # 2 para controlar accesos de visitantes");
-        System.out.println("Ingrese el # 3 para controlar accesos de visitantes");
+        System.out.println("Ingrese el # 3 para verificar estado de las salas");
         System.out.println("-----------------------------------------------");
 int decicionMenu = scanner.nextInt();
 
@@ -132,8 +128,13 @@ if ( decicionMenu == 1){
     System.out.println(obrasRegistradas[i].valorHistorico);
     System.out.println(obrasRegistradas[i].tipoObra);
     }
-    
-    
+}else if (decicionMenu == 2){
+    System.out.println("");
+
+}else if (decicionMenu == 3){
+    System.out.println ("Verificar condiciones de las salas ");
+    String temp = museos.registrarValidarTemperaturaDelAmbiente(opcion);
+    System.out.println("Temperatura registrada: " + temp);
 }
 
     }
