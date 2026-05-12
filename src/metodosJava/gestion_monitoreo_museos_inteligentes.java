@@ -31,19 +31,31 @@ Scanner scanner = new Scanner(System.in);
 
 //Métodos de registro de obras 
 
-    public String resgitrarObrasDeArte (String [] obrasDeArte){
+    public ObraDeArte[]registrarObrasDeArte(){
 
-        for (int i = 0; i < obrasDeArte.length; i++){
-            System.out.println("Ingrese el nombre de la obra")
-        }
+     System.out.println("Cuantas obras de arte desea registrar");
+     int cantidadObras = scanner.nextInt();
+    scanner.nextLine();
+        ObraDeArte[] obras = new ObraDeArte[cantidadObras];
+    for(int i =0 ; i< cantidadObras; i++){
+        System.out.print("Ingrese el nombre de la obra: ");
+        String nombre = scanner.nextLine();
+        System.out.print("La obra posee valor historico /true o false: ");
+        boolean valorHistorico = scanner.nextBoolean();
+        scanner.nextLine();
+        System.out.print("Ingrese el tipo de obra: ");
+        String tipoObra = scanner.nextLine();
+        obras[i]= new ObraDeArte( nombre,  valorHistorico, tipoObra);
+
+     }
     //registrar si posee valor historico
     //Registrar Tipo de obra de arte
-
+return obras;
     }
 
     public double registrarTemperaturaDelAmbiente (double temperatura){
    
-        System.out.println("Ingrese la temperatura actual")
+        System.out.println("Ingrese la temperatura actual");
         temperatura = scanner.nextDouble();
         return temperatura;
     }
@@ -109,7 +121,20 @@ public int reportesVisitantes (){
         System.out.println("----------------------------------------------");
         System.out.println("Ingrese el # 1 para registrar una obra de arte");
         System.out.println("Ingrese el # 2 para controlar accesos de visitantes");
+        System.out.println("Ingrese el # 3 para controlar accesos de visitantes");
         System.out.println("-----------------------------------------------");
+int decicionMenu = scanner.nextInt();
+
+if ( decicionMenu == 1){
+    ObraDeArte[] obrasRegistradas = museos.registrarObrasDeArte();
+    for(int i =0; i< obrasRegistradas.length; i++){
+    System.out.println(obrasRegistradas[i].nombre);
+    System.out.println(obrasRegistradas[i].valorHistorico);
+    System.out.println(obrasRegistradas[i].tipoObra);
+    }
+    
+    
+}
 
     }
 }
