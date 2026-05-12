@@ -32,6 +32,10 @@ Scanner scanner = new Scanner(System.in);
 //Métodos de registro de obras 
 
     public String resgitrarObrasDeArte (String [] obrasDeArte){
+
+        for (int i = 0; i < obrasDeArte.length; i++){
+            System.out.println("Ingrese el nombre de la obra")
+        }
     //registrar si posee valor historico
     //Registrar Tipo de obra de arte
 
@@ -78,7 +82,14 @@ Scanner scanner = new Scanner(System.in);
     }
 
     //MÉTODOS DE CONTROL DE ACCESO 
+public int registrarAccesoSala (){
+    int aforoMaxSala = 20 ; 
 
+}
+
+public int reportesVisitantes (){
+
+}
     
     public static void main(String[] args){
         gestion_monitoreo_museos_inteligentes  museos = new gestion_monitoreo_museos_inteligentes();
