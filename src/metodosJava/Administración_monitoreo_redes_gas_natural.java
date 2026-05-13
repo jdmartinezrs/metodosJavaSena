@@ -92,7 +92,7 @@ public class Administración_monitoreo_redes_gas_natural {
         }
         return presionGas;
     }
-        //vibración alta - double vibracion
+   
     public double revisionVibracionesEstructurales(String tipoEscogido){
         
         System.out.println("Revisión de nivles de vibración");
@@ -113,10 +113,9 @@ public class Administración_monitoreo_redes_gas_natural {
         }
 return vibracion;
     }
-//deformación alta - double deformacionTuberia
-//temperatura extrema- double temperaturaTuberias
+
     public double revisiondeformacionTuberia(String tipoEscogido){
-        System.out.println("Ingrese el nivel de vibración");
+        System.out.println("Ingrese el nivel de deformación de tubería");
         deformacionTuberia = scanner.nextDouble();
           if (tipoEscogido.equals("Residencial")) {
             if (deformacionTuberia>= 0 && deformacionTuberia <= 2){
@@ -133,6 +132,41 @@ return vibracion;
         }
         return deformacionTuberia; 
     }
+
+   
+public double revisionTemperaturaTuberias(String tipoEscogido){
+    System.out.println("Ingrese la temperatura actual de la tubería");
+temperaturaTuberias=scanner.nextDouble();
+   if (tipoEscogido.equals("Residencial")) {
+            if (temperaturaTuberias>= 20 && temperaturaTuberias <= 50){
+                System.out.println("Niveles de temperatura estables,se encuentra entre: 20 – 50 °C");
+            }else if (temperaturaTuberias> 50 ){
+                System.out.println(" Alerta Alta Temperatura: Riesgo crítico por superar los 50 °C");
+            }else if (temperaturaTuberias <= 0){
+                System.out.println("Alerta Alta :riesgo de congelamiento o fracturas");
+            }else if (temperaturaTuberias > 0 && temperaturaTuberias < 20 ){
+                System.out.println("Alerta Baja :riesgo de congelamiento o fracturas");
+            }
+        } else if (tipoEscogido.equals("Industrial")){
+             if (temperaturaTuberias >= 20 && temperaturaTuberias <= 70){
+                System.out.println("Niveles de temperatura estables,se encuentra entre: 20 – 50°C");
+            }else if (temperaturaTuberias > 70){
+                System.out.println(" Alerta Alta Temperatura: Riesgo crítico por superar los 70°C");
+            } }else if (temperaturaTuberias <= 0){
+                System.out.println("Alerta Alta :riesgo de congelamiento o fracturas");
+            }else if (temperaturaTuberias > 0 && temperaturaTuberias < 20 ){
+                System.out.println("Alerta Baja :riesgo de congelamiento o fracturas");
+            }
+              return temperaturaTuberias;
+        }
+      
+ public void protocoloIncendio(String tipoEscogido , double temperaturaTuberias){
+if(tipoEscogido.equals("Residencial") &&temperaturaTuberias> 50){
+System.out.println("Activación de portocolo INCENDIOS Residenciales");
+}
+        }
+       
+
     public static void main(String[] args) {
         Administración_monitoreo_redes_gas_natural gas = new Administración_monitoreo_redes_gas_natural();
         Scanner scanner = new Scanner(System.in);
@@ -142,6 +176,7 @@ return vibracion;
         double presion = gas.registrarPresion(sector);
         double vibration = gas.revisionVibracionesEstructurales(sector);
         double deformacion = gas.revisiondeformacionTuberia(sector);
+        double temperatura = gas.revisionTemperaturaTuberias(sector);
     }
 }
 
