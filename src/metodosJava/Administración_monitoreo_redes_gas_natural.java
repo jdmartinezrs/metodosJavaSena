@@ -32,14 +32,16 @@ public class Administración_monitoreo_redes_gas_natural {
     double temperaturaTuberias = 0;
     boolean fugaDegas = false;
     double nivelGas = 0;
-    String tipoStringector = "residencial/industrial";
+    String tipoStringector = "";
     boolean accesoAutorizado = false;
     double vibracion = 0;
     boolean humoDetectado = false;
+    boolean gasDetectado = false;
     boolean mantenimientoPendiente = false;
     double minPresionSegura = 0;
     double maxPresionSegura = 0;
     double deformacionTuberia= 0;
+    boolean incendio = false;
 
     public String especificarTipoDeSector() {
         String tipoEscogido = "";
@@ -160,10 +162,30 @@ temperaturaTuberias=scanner.nextDouble();
               return temperaturaTuberias;
         }
       
- public void protocoloIncendio(String tipoEscogido , double temperaturaTuberias){
+public boolean protocoloIncendio(String tipoEscogido , double temperaturaTuberias){
 if(tipoEscogido.equals("Residencial") &&temperaturaTuberias> 50){
-System.out.println("Activación de portocolo INCENDIOS Residenciales");
+System.out.println("Activación de portocolo INCENDIOS Residenciales por temperatura Extrema");
+System.out.println("¿Se detecta humo en la zóna? true/ false");
+humoDetectado = scanner.nextBoolean();
+System.out.println("¿Se detecta GAS en la zóna? true/ false");
+    gasDetectado = scanner.nextBoolean();
+    if(humoDetectado == true && gasDetectado == true){
+        incendio = true;
+System.out.println("Alerta INCENDIO:" + incendio +" llamar a los bombreros");
+    }
 }
+if(tipoEscogido.equals("Industrial") &&temperaturaTuberias> 70){
+    System.out.println("Activación de portocolo INCENDIOS Industriales por temperatura Extrema");
+System.out.println("¿Se detecta humo en la zóna? true/ false");
+humoDetectado = scanner.nextBoolean();
+System.out.println("¿Se detecta GAS en la zóna? true/ false");
+    gasDetectado = scanner.nextBoolean();
+    if(humoDetectado == true && gasDetectado == true){
+        incendio = true;
+System.out.println("Alerta INCENDIO:" + incendio +" llamar a los bombreros");
+    }
+}
+return incendio;
         }
        
 
@@ -177,6 +199,7 @@ System.out.println("Activación de portocolo INCENDIOS Residenciales");
         double vibration = gas.revisionVibracionesEstructurales(sector);
         double deformacion = gas.revisiondeformacionTuberia(sector);
         double temperatura = gas.revisionTemperaturaTuberias(sector);
+        boolean incendio = gas.protocoloIncendio(sector,temperatura);
     }
 }
 
