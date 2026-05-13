@@ -39,6 +39,7 @@ paisDestino	String	destino internacional
 prioridad	String	alta/media/baja
 estadoEntrega	String	en tránsito/entregado
 ubicacionActual	String	ubicación actual
+
 tiempoEntrega	double	horas o días
 retrasoDetectado	boolean	retraso logístico
 paquetePerdido	boolean	pérdida detectada

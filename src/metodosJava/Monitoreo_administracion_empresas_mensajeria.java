@@ -28,7 +28,27 @@ y escalable para permitir futuras integraciones con inteligencia artificial,
 drones de reparto y vehículos autónomos de distribución. 
 
  *///Variables
- 
+ String numeroGuia = "";
+double pesoPaquete = 0;
+double tamanoPaquete = 0;
+String paisDestino = "";
+String [] prioridad = {"ALTA", "MEDIA", "BAJA"};
+String []estadoEntrega = {"TRANSITO","ENTREGADA"};
+String ubicaacionActual = "";
+double tiempoEntrega = 0;
+boolean retrasoDetectado = false;
+boolean paquetePerdido = false;
+boolean intentoFraude = false;
+double traficoVehicular = 0;
+String clima = "";
+double velocidadVehiculo = 0;
+int capacidadCentro = 0;
+int cargaActualCentro = 0;
+boolean vehiculoDisponible = false;
+boolean mantenimientoPendiente = false;
+double productividadRepartidor = 0;
+double costoOperacion = 0;
+
 
     static Scanner scanner = new Scanner(System.in);
 
