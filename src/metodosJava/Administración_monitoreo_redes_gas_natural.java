@@ -186,18 +186,15 @@ public double revisionTemperaturaTuberias(String tipoEscogido){
 
     return temperaturaTuberias;
 }
-        
-     
+           
 public boolean protocoloIncendio(String tipoEscogido,double temperaturaTuberias,double presionGas){
     if(tipoEscogido.equals("Residencial") && temperaturaTuberias > 50){
         System.out.println("Activación de protocolo INCENDIOS Residenciales por temperatura extrema");
         if(humoDetectado == true){
             System.out.println("Se detecta HUMO en la zona");
-        }
-        if(fugaDegas == true){
+        }if(fugaDegas == true){
             System.out.println("Se detecta GAS en la zona");
-        }
-        if(fugaDegas == true && humoDetectado == true){
+        }if(fugaDegas == true && humoDetectado == true){
             incendio = true;
             System.out.println("ALERTA INCENDIO: " + incendio + " llamar a los bomberos");
         }
@@ -205,11 +202,9 @@ public boolean protocoloIncendio(String tipoEscogido,double temperaturaTuberias,
         System.out.println("Activación de protocolo INCENDIOS Industriales por temperatura extrema");
         if(fugaDegas == true){
             System.out.println("Se detecta GAS en la zona");
-        }
-        if(humoDetectado == true){
+        }if(humoDetectado == true){
             System.out.println("Se detecta HUMO en la zona");
-        }
-        if(fugaDegas == true && humoDetectado == true){
+        }if(fugaDegas == true && humoDetectado == true){
             incendio = true;
             System.out.println("ALERTA INCENDIO: " + incendio + " llamar a los bomberos");
         }

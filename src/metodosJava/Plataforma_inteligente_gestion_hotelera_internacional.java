@@ -166,5 +166,4 @@ public static void main(String[] args){
     double precioConDescuento = tarifa.realizarDescuentosPorMembresia(precioFinalConUbicacion);
     System.out.println("El precio con descuento por membrecía es : "+ precioConDescuento);
 }
- 
 }
