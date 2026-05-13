@@ -46,6 +46,19 @@ paquete[i][2] = scanner.nextLine();
         }
          return paquete;
     }
+
+    public String[][] registrarRutaDeReparto (String [][] rutas){
+for (int i = 0; i< rutas.length; i++){
+    System.out.println("Registrar nombre ruta ");
+    rutas[i][0] = scanner.nextLine();
+    System.out.println("Resgitrar origen de la encomienda")
+}
+        
+
+
+return rutas;
+    }
+
     public static void main(String[] args){
         Monitoreo_administracion_empresas_mensajeria encomienda = new  Monitoreo_administracion_empresas_mensajeria();
         Scanner scanner = new Scanner(System.in);
