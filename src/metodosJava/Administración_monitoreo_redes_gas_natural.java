@@ -77,7 +77,10 @@ public class Administración_monitoreo_redes_gas_natural {
             if (presionGas < minPresionSegura) {
                 System.out.println("Alerta gas en el aire");
                 fugaDegas = true;
+                mantenimientoPendiente = true;
                 System.out.print("¿Hay una fuga de gas? "+ fugaDegas);
+                System.out.print("¿Requiere Mantenimiento? "+ mantenimientoPendiente );
+
             }
         }
         if (tipoEscogido.equals("Industrial")) {
@@ -89,7 +92,9 @@ public class Administración_monitoreo_redes_gas_natural {
             if (presionGas < minPresionSegura) {
                 System.out.println("Alerta gas en el aire");
                 fugaDegas = true;
+                mantenimientoPendiente = true;
                 System.out.println("¿Hay una fuga de gas? "+ fugaDegas);
+                System.out.print("¿Requiere Mantenimiento? "+ mantenimientoPendiente );
             }
         }
         return presionGas;
@@ -105,12 +110,17 @@ public class Administración_monitoreo_redes_gas_natural {
                 System.out.println("Niveles de vibración seguros");
             }else if (vibracion > 3 ){
                 System.out.println("Riesgo crítico por Vibración");
+                mantenimientoPendiente = true;
+                System.out.print("¿Requiere Mantenimiento? "+ mantenimientoPendiente );
+
             }
         } else if (tipoEscogido.equals("Industrial")){
              if (vibracion >= 0 && vibracion <= 8){
                 System.out.println("Niveles de vibración seguros");
             }else if (vibracion > 8 ){
                 System.out.println("Riesgo crítico por Vibración");
+                mantenimientoPendiente = true;
+                System.out.print("¿Requiere Mantenimiento? "+ mantenimientoPendiente );
             }
         }
 return vibracion;
@@ -124,12 +134,16 @@ return vibracion;
                 System.out.println("Niveles de deformación seguros es igual o menor a 2mm");
             }else if (vibracion > 3 ){
                 System.out.println("Riesgo crítico por deformación de tuberías supera lo 3mm");
+                mantenimientoPendiente = true;
+                System.out.print("¿Requiere Mantenimiento? "+ mantenimientoPendiente );
             }
         } else if (tipoEscogido.equals("Industrial")){
              if (deformacionTuberia >= 0 && deformacionTuberia <= 5){
                 System.out.println("Niveles de deformación de tubería seguros no supera los 5mm");
             }else if (deformacionTuberia > 5 ){
                 System.out.println("Riesgo crítico deformación de tubería, la deformación supera los 5mm");
+                mantenimientoPendiente = true;
+                System.out.print("¿Requiere Mantenimiento? "+ mantenimientoPendiente );
             }
         }
         return deformacionTuberia; 
@@ -138,60 +152,76 @@ return vibracion;
    
 public double revisionTemperaturaTuberias(String tipoEscogido){
     System.out.println("Ingrese la temperatura actual de la tubería");
-temperaturaTuberias=scanner.nextDouble();
-   if (tipoEscogido.equals("Residencial")) {
-            if (temperaturaTuberias>= 20 && temperaturaTuberias <= 50){
-                System.out.println("Niveles de temperatura estables,se encuentra entre: 20 – 50 °C");
-            }else if (temperaturaTuberias> 50 ){
-                System.out.println(" Alerta Alta Temperatura: Riesgo crítico por superar los 50 °C");
-            }else if (temperaturaTuberias <= 0){
-                System.out.println("Alerta Alta :riesgo de congelamiento o fracturas");
-            }else if (temperaturaTuberias > 0 && temperaturaTuberias < 20 ){
-                System.out.println("Alerta Baja :riesgo de congelamiento o fracturas");
-            }
-        } else if (tipoEscogido.equals("Industrial")){
-             if (temperaturaTuberias >= 20 && temperaturaTuberias <= 70){
-                System.out.println("Niveles de temperatura estables,se encuentra entre: 20 – 50°C");
-            }else if (temperaturaTuberias > 70){
-                System.out.println(" Alerta Alta Temperatura: Riesgo crítico por superar los 70°C");
-            } }else if (temperaturaTuberias <= 0){
-                System.out.println("Alerta Alta :riesgo de congelamiento o fracturas");
-            }else if (temperaturaTuberias > 0 && temperaturaTuberias < 20 ){
-                System.out.println("Alerta Baja :riesgo de congelamiento o fracturas");
-            }
-              return temperaturaTuberias;
+    temperaturaTuberias = scanner.nextDouble();
+    if (tipoEscogido.equals("Residencial")) {
+        if (temperaturaTuberias >= 20 && temperaturaTuberias <= 50){
+            System.out.println("Niveles de temperatura estables,se encuentra entre: 20 – 50 °C");
+        } else if (temperaturaTuberias > 50 ){
+            System.out.println("Alerta Alta Temperatura: Riesgo crítico por superar los 50 °C");
+            humoDetectado = true;
+            System.out.println("Se detecta Humo en las tuberías");
+            mantenimientoPendiente = true;
+            System.out.println("¿Requiere Mantenimiento? " + mantenimientoPendiente);
+        } else if (temperaturaTuberias <= 0){
+            System.out.println("Alerta Alta :riesgo de congelamiento o fracturas");
+        } else if (temperaturaTuberias > 0 && temperaturaTuberias < 20 ){
+            System.out.println("Alerta Baja :riesgo de congelamiento o fracturas");
         }
 
-       
-      
-public boolean protocoloIncendio(String tipoEscogido , double temperaturaTuberias){
-if(tipoEscogido.equals("Residencial") &&temperaturaTuberias> 50){
-System.out.println("Activación de portocolo INCENDIOS Residenciales por temperatura Extrema");
-System.out.println("¿Se detecta humo en la zóna? true/ false");
-humoDetectado = scanner.nextBoolean();
-System.out.println("¿Se detecta GAS en la zóna? true/ false");
-    gasDetectado = scanner.nextBoolean();
-    if(humoDetectado == true && gasDetectado == true){
-        incendio = true;
-System.out.println("Alerta INCENDIO:" + incendio +" llamar a los bombreros");
-    }
-}
-if(tipoEscogido.equals("Industrial") &&temperaturaTuberias> 70){
-    System.out.println("Activación de portocolo INCENDIOS Industriales por temperatura Extrema");
-System.out.println("¿Se detecta humo en la zóna? true/ false");
-humoDetectado = scanner.nextBoolean();
-System.out.println("¿Se detecta GAS en la zóna? true/ false");
-    gasDetectado = scanner.nextBoolean();
-    if(humoDetectado == true && gasDetectado == true){
-        incendio = true;
-System.out.println("Alerta INCENDIO:" + incendio +" llamar a los bombreros");
-    }
-}
-return incendio;
+    } else if (tipoEscogido.equals("Industrial")) {
+        if (temperaturaTuberias >= 20 && temperaturaTuberias <= 70){
+            System.out.println("Niveles de temperatura estables,se encuentra entre: 20 – 70 °C");
+        } else if (temperaturaTuberias > 70){
+            System.out.println("Alerta Alta Temperatura: Riesgo crítico por superar los 70°C");
+            humoDetectado = true;
+            System.out.println("Se detecta Humo en las tuberías");
+            mantenimientoPendiente = true;
+            System.out.println("¿Requiere Mantenimiento? " + mantenimientoPendiente);
+        } else if (temperaturaTuberias <= 0){
+            System.out.println("Alerta Alta :riesgo de congelamiento o fracturas");
+        } else if (temperaturaTuberias > 0 && temperaturaTuberias < 20 ){
+            System.out.println("Alerta Baja :riesgo de congelamiento o fracturas");
         }
-       
+    }
+
+    return temperaturaTuberias;
+}
+        
+     
+public boolean protocoloIncendio(String tipoEscogido,double temperaturaTuberias,double presionGas){
+    if(tipoEscogido.equals("Residencial") && temperaturaTuberias > 50){
+        System.out.println("Activación de protocolo INCENDIOS Residenciales por temperatura extrema");
+        if(humoDetectado == true){
+            System.out.println("Se detecta HUMO en la zona");
+        }
+        if(fugaDegas == true){
+            System.out.println("Se detecta GAS en la zona");
+        }
+        if(fugaDegas == true && humoDetectado == true){
+            incendio = true;
+            System.out.println("ALERTA INCENDIO: " + incendio + " llamar a los bomberos");
+        }
+    } else if(tipoEscogido.equals("Industrial") && temperaturaTuberias >= 70){
+        System.out.println("Activación de protocolo INCENDIOS Industriales por temperatura extrema");
+        if(fugaDegas == true){
+            System.out.println("Se detecta GAS en la zona");
+        }
+        if(humoDetectado == true){
+            System.out.println("Se detecta HUMO en la zona");
+        }
+        if(fugaDegas == true && humoDetectado == true){
+            incendio = true;
+            System.out.println("ALERTA INCENDIO: " + incendio + " llamar a los bomberos");
+        }
+    }
+    return incendio;
+}
          public boolean reporteEstructuralGeneral(double presionGas,double vibracion,double deformacionTuberia,double temperaturaTuberias,String tipoEscogido){
-
+System.out.println ("Reporte general de infraestructura");
+System.out.println ("Presión de gas: "+ presionGas);
+System.out.println ("Vibración: "+ vibracion);
+System.out.println ("Deformación de tubería : "+ deformacionTuberia);
+System.out.println ("Temperatura de tubería : "+ temperaturaTuberias);
             return mantenimientoPendiente;
         }
 
@@ -205,7 +235,7 @@ return incendio;
         double vibration = gas.revisionVibracionesEstructurales(sector);
         double deformacion = gas.revisiondeformacionTuberia(sector);
         double temperatura = gas.revisionTemperaturaTuberias(sector);
-        boolean incendio = gas.protocoloIncendio(sector,temperatura);
+        boolean incendio = gas.protocoloIncendio(sector,temperatura, presion);
     }
 }
 
