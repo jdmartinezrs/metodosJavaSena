@@ -99,6 +99,7 @@ Tipos de métodos
 validarPresion()
 generarAlertaSobrepresion()
 cerrarValvulaEmergencia()
+
 6. DAÑOS ESTRUCTURALES
 
 Aquí puedes simular sensores de:
@@ -121,6 +122,51 @@ Variable	Tipo
 vibracion	double
 deformacion	double
 temperaturaTuberia	double
+
+Sí. En un sistema de monitoreo de gas esas variables normalmente representan datos que vienen de sensores físicos y el operador puede ingresarlos manualmente para simular lecturas.
+
+Por ejemplo:
+
+Variable	Qué mide	Unidad común	Valores normales	Valores de riesgo
+vibracion	Movimiento o sacudida de la tubería	mm/s o Hz	0 – 5	> 10 peligro
+deformacion	Cambio físico en la estructura	mm o %	0 – 2 mm	> 5 mm
+temperaturaTuberia	Temperatura de la tubería	°C	20 – 60 °C	> 80 °C
+
+Ejemplo de ingreso manual:
+
+Ingrese vibración actual:
+12.5
+
+Ingrese deformación:
+6
+
+Ingrese temperatura de la tubería:
+95
+
+Con esos valores:
+
+vibración alta - double vibracion
+deformación alta - double deformacionTuberia
+temperatura extrema- double temperaturaTuberias
+
+→ el sistema podría generar:
+
+ALERTA: Posible daño estructural
+
+También podrías manejar rangos más realistas dependiendo del sector:
+
+Residencial
+Vibración segura: 0 – 3
+Temperatura segura: 20 – 50 °C
+Industrial
+Vibración segura: 0 – 8
+Temperatura segura: 20 – 70 °C
+Riesgo crítico
+Vibración > 10
+Temperatura > 90 °C
+Deformación > 5 mm
+
+Sí tiene sentido que “se ingresen” porque estás simulando sensores en consola.
 7. DISTRIBUCIÓN DE GAS
 
 Aquí debes pensar en sectores.

@@ -39,6 +39,7 @@ public class Administración_monitoreo_redes_gas_natural {
     boolean mantenimientoPendiente = false;
     double minPresionSegura = 0;
     double maxPresionSegura = 0;
+    double deformacionTuberia= 0;
 
     public String especificarTipoDeSector() {
         String tipoEscogido = "";
@@ -62,34 +63,69 @@ public class Administración_monitoreo_redes_gas_natural {
         return tipoEscogido;
     }
 
-public double registrarPresion(String tipoEscogido){
-    System.out.println("Ingrese el valor de la presión de gas actual");
-    double presionGas = scanner.nextDouble();
-    if (tipoEscogido.equals("Residencial")){
-  minPresionSegura = 20;
-  maxPresionSegura = 60;
-  if(presionGas>maxPresionSegura ){
-    System.out.println("Alerta Cerrar la válvula");
-  }if(presionGas<minPresionSegura){
-    System.out.println("Alerta Abrir la válvula");
-  }
-    }if(tipoEscogido.equals("Industrial")){
-        minPresionSegura = 70;
-        maxPresionSegura = 150;
-        if(presionGas>maxPresionSegura){
-            System.out.println("Alerta Cerrar la válvula");
-        }if(presionGas<minPresionSegura){
-    System.out.println("Alerta Abrir la válvula");
+    public double registrarPresion(String tipoEscogido) {
+        System.out.println("Ingrese el valor de la presión de gas actual");
+        double presionGas = scanner.nextDouble();
+        if (tipoEscogido.equals("Residencial")) {
+            minPresionSegura = 20;
+            maxPresionSegura = 60;
+            if (presionGas > maxPresionSegura) {
+                System.out.println("Alerta Cerrar la válvula");
+            }
+            if (presionGas < minPresionSegura) {
+                System.out.println("Alerta gas en el aire");
+                fugaDegas = true;
+                System.out.print("¿Hay una fuga de gas? "+ fugaDegas);
+            }
+        }
+        if (tipoEscogido.equals("Industrial")) {
+            minPresionSegura = 70;
+            maxPresionSegura = 150;
+            if (presionGas > maxPresionSegura) {
+                System.out.println("Alerta Cerrar la válvula");
+            }
+            if (presionGas < minPresionSegura) {
+                System.out.println("Alerta gas en el aire");
+                fugaDegas = true;
+                System.out.println("¿Hay una fuga de gas? "+ fugaDegas);
+            }
+        }
+        return presionGas;
     }
+        //vibración alta - double vibracion
+//deformación alta - double deformacionTuberia
+//temperatura extrema- double temperaturaTuberias
+    public double revisionVibracionesEstructurales(String tipoEscogido){
+        
+        System.out.println("Revisión de nivles de vibración");
+        System.out.println("Ingrese el nivel de vibración");
+        vibracion = scanner.nextDouble();
+        if (tipoEscogido.equals("Residencial")) {
+            if (vibracion >= 0 && vibracion <= 3){
+                System.out.println("Niveles de vibración seguros");
+            }else if (vibracion > 3 ){
+                System.out.println("Riesgo crítico por Vibración");
+            }
+        } else if (tipoEscogido.equals("Industrial")){
+             if (vibracion >= 0 && vibracion <= 8){
+                System.out.println("Niveles de vibración seguros");
+            }else if (vibracion > 8 ){
+                System.out.println("Riesgo crítico por Vibración");
+            }
+        }
+return vibracion;
     }
-    return presionGas;
-}
 
     public static void main(String[] args) {
         Administración_monitoreo_redes_gas_natural gas = new Administración_monitoreo_redes_gas_natural();
         Scanner scanner = new Scanner(System.in);
         String sector = gas.especificarTipoDeSector();
         System.out.println("El tipo de sector escogido es " + sector);
+        System.out.println("Revisión de daños estructurales");
         double presion = gas.registrarPresion(sector);
+        double vibration = gas.revisionVibracionesEstructurales(sector);
     }
 }
+
+//humoDetectado	boolean	incendio
+//mantenimientoPendiente	boolean	control técnico
