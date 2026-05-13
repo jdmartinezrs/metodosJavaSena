@@ -161,6 +161,8 @@ temperaturaTuberias=scanner.nextDouble();
             }
               return temperaturaTuberias;
         }
+
+       
       
 public boolean protocoloIncendio(String tipoEscogido , double temperaturaTuberias){
 if(tipoEscogido.equals("Residencial") &&temperaturaTuberias> 50){
@@ -188,6 +190,10 @@ System.out.println("Alerta INCENDIO:" + incendio +" llamar a los bombreros");
 return incendio;
         }
        
+         public boolean reporteEstructuralGeneral(double presionGas,double vibracion,double deformacionTuberia,double temperaturaTuberias,String tipoEscogido){
+
+            return mantenimientoPendiente;
+        }
 
     public static void main(String[] args) {
         Administración_monitoreo_redes_gas_natural gas = new Administración_monitoreo_redes_gas_natural();
@@ -203,5 +209,14 @@ return incendio;
     }
 }
 
+
+
 //humoDetectado	boolean	incendio
+/*Si vibracion > 10
+O deformacion > 5
+O temperatura > 90
+O temperatura < 0
+
+Entonces:
+Posible daño estructural*/
 //mantenimientoPendiente	boolean	control técnico
