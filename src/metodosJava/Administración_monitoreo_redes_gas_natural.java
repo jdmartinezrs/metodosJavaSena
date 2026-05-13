@@ -93,8 +93,6 @@ public class Administración_monitoreo_redes_gas_natural {
         return presionGas;
     }
         //vibración alta - double vibracion
-//deformación alta - double deformacionTuberia
-//temperatura extrema- double temperaturaTuberias
     public double revisionVibracionesEstructurales(String tipoEscogido){
         
         System.out.println("Revisión de nivles de vibración");
@@ -115,7 +113,26 @@ public class Administración_monitoreo_redes_gas_natural {
         }
 return vibracion;
     }
-
+//deformación alta - double deformacionTuberia
+//temperatura extrema- double temperaturaTuberias
+    public double revisiondeformacionTuberia(String tipoEscogido){
+        System.out.println("Ingrese el nivel de vibración");
+        deformacionTuberia = scanner.nextDouble();
+          if (tipoEscogido.equals("Residencial")) {
+            if (deformacionTuberia>= 0 && deformacionTuberia <= 2){
+                System.out.println("Niveles de deformación seguros es igual o menor a 2mm");
+            }else if (vibracion > 3 ){
+                System.out.println("Riesgo crítico por deformación de tuberías supera lo 3mm");
+            }
+        } else if (tipoEscogido.equals("Industrial")){
+             if (deformacionTuberia >= 0 && deformacionTuberia <= 5){
+                System.out.println("Niveles de deformación de tubería seguros no supera los 5mm");
+            }else if (deformacionTuberia > 5 ){
+                System.out.println("Riesgo crítico deformación de tubería, la deformación supera los 5mm");
+            }
+        }
+        return deformacionTuberia; 
+    }
     public static void main(String[] args) {
         Administración_monitoreo_redes_gas_natural gas = new Administración_monitoreo_redes_gas_natural();
         Scanner scanner = new Scanner(System.in);
@@ -124,6 +141,7 @@ return vibracion;
         System.out.println("Revisión de daños estructurales");
         double presion = gas.registrarPresion(sector);
         double vibration = gas.revisionVibracionesEstructurales(sector);
+        double deformacion = gas.revisiondeformacionTuberia(sector);
     }
 }
 
