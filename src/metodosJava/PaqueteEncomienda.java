@@ -21,4 +21,12 @@ public class PaqueteEncomienda{
 public void setEstadoEntrega(String estadoEntrega){
     this.estadoEntrega = estadoEntrega;
 }
+
+public void setUbicacion(String ubicaacionActual ){
+    this.ubicaacionActual = ubicaacionActual;
+}
+
+public void setTiempoEntrega (double tiempoEntrega){
+    this.tiempoEntrega = tiempoEntrega;
+}
 }

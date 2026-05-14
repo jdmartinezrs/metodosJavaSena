@@ -75,41 +75,48 @@ encomienda[i] = new PaqueteEncomienda (numeroGuia , ubicaacionActual, tiempoEntr
 
    
 public PaqueteEncomienda[] modificarEstadoEncomienda(PaqueteEncomienda[] encomienda){
-
-    scanner.nextLine();
-
     System.out.println("Ingrese el número de guía del paquete que desea modificar:");
     String guiaBuscada = scanner.nextLine();
-
     boolean encontrado = false;
-
     for (int i = 0; i < encomienda.length; i++) {
-
         if(encomienda[i].getNumeroGuia().equals(guiaBuscada)){
-
             System.out.println("Ingrese el nuevo estado de entrega:");
             String nuevoEstado = scanner.nextLine();
-
             encomienda[i].setEstadoEntrega(nuevoEstado);
-
             System.out.println("Estado actualizado correctamente");
-
             encontrado = true;
         }
     }
-
     if(encontrado == false){
         System.out.println("No se encontró ningún paquete con esa guía");
     }
-
     return encomienda;
 }
 
-
-
+public PaqueteEncomienda[] modificarUbicacionyTiempoActualEncomienda(
+        PaqueteEncomienda[] encomienda){
+    System.out.println(
+            "Ingrese el número de guía del paquete que desea modificar:");
+    String guiaBuscada = scanner.nextLine();
+    boolean encontrado = false;
+    for (int i = 0; i < encomienda.length; i++) {
+        if(encomienda[i].getNumeroGuia().equals(guiaBuscada)){
+            System.out.println("Ingrese la nueva ubicación actual:");
+            String nuevaUbicacion = scanner.nextLine();
+            encomienda[i].setUbicacion(nuevaUbicacion);
+            encontrado = true;
+            System.out.println("Ingrese el aproximado de tiempo de entrega actual en horas/minutos:");
+            double nuevoTiempoEntrega = scanner.nextDouble();
+            encomienda[i].setTiempoEntrega(nuevoTiempoEntrega );
+            System.out.println("Ubicación y tiempo actualizados");
+            return encomienda;
+        }
+    }if(!encontrado){
+        System.out.println("No se encontró el paquete");
+    }return encomienda;
+}
 
     public static void main(String[] args){
-
     Monitoreo_administracion_empresas_mensajeria encomienda =
             new Monitoreo_administracion_empresas_mensajeria();
     PaqueteEncomienda[] paquetes = encomienda.registroDePaquetes();
@@ -126,8 +133,14 @@ public PaqueteEncomienda[] modificarEstadoEncomienda(PaqueteEncomienda[] encomie
         System.out.println(paquetes[i].tiempoEntrega);
         System.out.println(paquetes[i].estadoEntrega);
     }
+    encomienda.modificarUbicacionyTiempoActualEncomienda(paquetes);
+       for(int i = 0; i < paquetes.length; i++){
+        System.out.println(paquetes[i].numeroGuia);
+        System.out.println(paquetes[i].ubicaacionActual);
+        System.out.println(paquetes[i].tiempoEntrega);
+        System.out.println(paquetes[i].estadoEntrega);
+    }
 }
-
 }
 
 /*Registro de paquetes
