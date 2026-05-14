@@ -15,5 +15,10 @@ public class PaqueteEncomienda{
         
     }
 
-
+    public String getNumeroGuia(){
+        return numeroGuia;
+    }
+public void setEstadoEntrega(String estadoEntrega){
+    this.estadoEntrega = estadoEntrega;
+}
 }

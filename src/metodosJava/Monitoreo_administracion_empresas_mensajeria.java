@@ -56,50 +56,78 @@ double costoOperacion = 0;
  System.out.println("Cuantas paquetes desea registrar");
   int cantidadPaquetes = scanner.nextInt();
 PaqueteEncomienda[] encomienda = new PaqueteEncomienda[cantidadPaquetes];
+scanner.nextLine();
         for (int i = 0; i < cantidadPaquetes; i++  ){
 System.out.println("Registro del paquete " + (i + 1));
 System.out.println("Ingrese el número de guía del paquete: ");
 numeroGuia = scanner.nextLine();
 System.out.println("Ingrese la ubicación del paquete: ");
 ubicaacionActual = scanner.nextLine();
-System.out.println("Ingrese el aproximado de tiempo de entrega: ");
+System.out.println("Ingrese el aproximado de tiempo de entrega en horas/minutos: ");
 tiempoEntrega = scanner.nextDouble();
-System.out.println("Ingrese el Estado de la entrega: ");
+scanner.nextLine();
+System.out.println("Ingrese el Estado de la entrega: BODEGA/REPARTO/ENTREGADO ");
 estadoEntrega = scanner.nextLine();
 encomienda[i] = new PaqueteEncomienda (numeroGuia , ubicaacionActual, tiempoEntrega,estadoEntrega);
         }
          return encomienda;
     }
 
-    public PaqueteEncomienda[] modificarEncomienda (PaqueteEncomienda[] encomienda){
-        System.out.println("");
+   
+public PaqueteEncomienda[] modificarEstadoEncomienda(PaqueteEncomienda[] encomienda){
 
-        return encomienda;
+    scanner.nextLine();
+
+    System.out.println("Ingrese el número de guía del paquete que desea modificar:");
+    String guiaBuscada = scanner.nextLine();
+
+    boolean encontrado = false;
+
+    for (int i = 0; i < encomienda.length; i++) {
+
+        if(encomienda[i].getNumeroGuia().equals(guiaBuscada)){
+
+            System.out.println("Ingrese el nuevo estado de entrega:");
+            String nuevoEstado = scanner.nextLine();
+
+            encomienda[i].setEstadoEntrega(nuevoEstado);
+
+            System.out.println("Estado actualizado correctamente");
+
+            encontrado = true;
+        }
     }
 
+    if(encontrado == false){
+        System.out.println("No se encontró ningún paquete con esa guía");
+    }
 
-
-    public String[][] registrarRutaDeReparto (String [][] rutas){
-for (int i = 0; i< rutas.length; i++){
-    System.out.println("Registrar nombre ruta ");
-    rutas[i][0] = scanner.nextLine();
-    System.out.println("Resgitrar origen de la encomienda");
+    return encomienda;
 }
-        
 
 
-return rutas;
-    }
+
 
     public static void main(String[] args){
-        Monitoreo_administracion_empresas_mensajeria encomienda = new  Monitoreo_administracion_empresas_mensajeria();
-        Scanner scanner = new Scanner(System.in);
-         System.out.println("Ingrese cuantos paquetes desea registrar");
-        int cantidadPaquetes = scanner.nextInt();
-        scanner.nextLine();
-        String [][] encomiendas = new String [cantidadPaquetes][3];
-        encomienda.registroDePaquetes(encomiendas);
+
+    Monitoreo_administracion_empresas_mensajeria encomienda =
+            new Monitoreo_administracion_empresas_mensajeria();
+    PaqueteEncomienda[] paquetes = encomienda.registroDePaquetes();
+    for(int i = 0; i < paquetes.length; i++){
+        System.out.println(paquetes[i].numeroGuia);
+        System.out.println(paquetes[i].ubicaacionActual);
+        System.out.println(paquetes[i].tiempoEntrega);
+        System.out.println(paquetes[i].estadoEntrega);
     }
+    encomienda.modificarEstadoEncomienda(paquetes);
+       for(int i = 0; i < paquetes.length; i++){
+        System.out.println(paquetes[i].numeroGuia);
+        System.out.println(paquetes[i].ubicaacionActual);
+        System.out.println(paquetes[i].tiempoEntrega);
+        System.out.println(paquetes[i].estadoEntrega);
+    }
+}
+
 }
 
 /*Registro de paquetes
