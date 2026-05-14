@@ -71,6 +71,11 @@ encomienda[i] = new PaqueteEncomienda (numeroGuia , ubicaacionActual, tiempoEntr
          return encomienda;
     }
 
+    public PaqueteEncomienda[] modificarEncomienda (PaqueteEncomienda[] encomienda){
+        System.out.println("");
+
+        return encomienda;
+    }
 
 
 
