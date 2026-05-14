@@ -33,7 +33,7 @@ double pesoPaquete = 0;
 double tamanoPaquete = 0;
 String paisDestino = "";
 String [] prioridad = {"ALTA", "MEDIA", "BAJA"};
-String []estadoEntrega = {"TRANSITO","ENTREGADA"};
+String estadoEntrega = "";
 String ubicaacionActual = "";
 double tiempoEntrega = 0;
 boolean retrasoDetectado = false;
@@ -52,26 +52,33 @@ double costoOperacion = 0;
 
     static Scanner scanner = new Scanner(System.in);
 
-    public String[][] registroDePaquetes (String[][] paquete){
-
-
-        for (int i = 0; i < paquete.length; i++  ){
+    public PaqueteEncomienda[] registroDePaquetes (){
+ System.out.println("Cuantas paquetes desea registrar");
+  int cantidadPaquetes = scanner.nextInt();
+PaqueteEncomienda[] encomienda = new PaqueteEncomienda[cantidadPaquetes];
+        for (int i = 0; i < cantidadPaquetes; i++  ){
 System.out.println("Registro del paquete " + (i + 1));
-System.out.println("Ingrese el número del paquéte: ");
-paquete[i][0] = scanner.nextLine();
-System.out.println("Ingrese el número del paquéte: ");
-paquete[i][1] = scanner.nextLine();
-System.out.println("Ingrese el destino: ");
-paquete[i][2] = scanner.nextLine();
+System.out.println("Ingrese el número de guía del paquete: ");
+numeroGuia = scanner.nextLine();
+System.out.println("Ingrese la ubicación del paquete: ");
+ubicaacionActual = scanner.nextLine();
+System.out.println("Ingrese el aproximado de tiempo de entrega: ");
+tiempoEntrega = scanner.nextDouble();
+System.out.println("Ingrese el Estado de la entrega: ");
+estadoEntrega = scanner.nextLine();
+encomienda[i] = new PaqueteEncomienda (numeroGuia , ubicaacionActual, tiempoEntrega,estadoEntrega);
         }
-         return paquete;
+         return encomienda;
     }
+
+
+
 
     public String[][] registrarRutaDeReparto (String [][] rutas){
 for (int i = 0; i< rutas.length; i++){
     System.out.println("Registrar nombre ruta ");
     rutas[i][0] = scanner.nextLine();
-    System.out.println("Resgitrar origen de la encomienda")
+    System.out.println("Resgitrar origen de la encomienda");
 }
         
 
@@ -89,3 +96,22 @@ return rutas;
         encomienda.registroDePaquetes(encomiendas);
     }
 }
+
+/*Registro de paquetes
+Seguimiento en tiempo real
+Control de rutas
+Gestión de vehículos
+Centros logísticos
+Entregas internacionales
+Tráfico y clima
+Prioridades de envío
+Detección de pérdidas
+Errores de clasificación
+Fraudes logísticos
+Control aduanero
+Costos operativos
+Consumo de combustible
+Productividad de repartidores
+Alertas automáticas
+Reportes
+Inventario logístico */
