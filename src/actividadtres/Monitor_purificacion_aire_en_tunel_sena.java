@@ -21,22 +21,27 @@ public class Monitor_purificacion_aire_en_tunel_sena {
     //  El sistema debe garantizar que si el nivel de CO llega a un punto de toxicidad extrema, 
     // se disparen las alarmas de evacuación y se genere un historial que guarde la densidad de visibilidad 
     // y el número de vehículos que se encuentran dentro del túnel en ese momento. 
-//ambiente
+
     double nivelCO = 0;
     double densidadVisibilidad = 0;
     double temperaturaTunel = 0;
     double humedad = 0;
-    // operativas
+    
     boolean extractoresActivos = false;
     int potenciaExtractores = 0;
     boolean peajesAbiertos = false;
     boolean alarmaEvacuacion = false;
-    //trafico 
+    
     int vehiculosDentro = 0;
-    double vehiculosPorMinuto = 0;
+   
+    String horaIncidente = "";
+
+    
 
 Scanner  scanner = new Scanner(System.in);
+
     public double medirNivelesCO (){
+        double limiteExposicionHumana = 100;
         System.out.println("Ingreselod niveles de CO en ppm");
         nivelCO = scanner.nextDouble();
 
@@ -46,19 +51,20 @@ if(nivelCO >=0 && nivelCO <= 25){
     System.out.println(" Nivel CO Moderado");
 }else if(nivelCO >=51 && nivelCO <= 100){
     System.out.println("Nivel CO Peligroso");
-}else if(nivelCO> 100){
-    System.out.println("Nivel CO Crítico");
+}else if(nivelCO> limiteExposicionHumana){
+    System.out.println("Nivel CO Crítico , no apto para exposición Humana");
 }
 return nivelCO;
     }
 
     public double densidadVisibilidad (){
-        System.out.println("Ingrese los niveles de desidad visibilidad");
+        System.out.println("sensor láser: Ingrese los niveles de desidad visibilidad");
         densidadVisibilidad = scanner.nextDouble();
         return densidadVisibilidad;
 
     }
     public double indiceCalidadAireInterior (double nivelCO , double densidadVisibilidad){
+
         double indiceCalidadAireInterior = (nivelCO *0.7)+(densidadVisibilidad*0.3);
 if(indiceCalidadAireInterior >= 0 && indiceCalidadAireInterior <= 30){
     System.out.println("Índice de calidad aire interior ÓPTIMA ");
@@ -72,7 +78,62 @@ if(indiceCalidadAireInterior >= 0 && indiceCalidadAireInterior <= 30){
 return indiceCalidadAireInterior;
     }
 
+    public double controlExtractores (double indiceCalidadAireInterior){
 
+        if(indiceCalidadAireInterior< 30){
+extractoresActivos = true;
+potenciaExtractores = 40;
+System.out.println("Extractores encendidos a BAJA marcha");
+System.out.println("Potencia de Extractores" + potenciaExtractores);
+        } else if (indiceCalidadAireInterior > 60){
+    extractoresActivos = true;
+potenciaExtractores = 100;
+System.out.println("Extractores encendidos a MÁXIMA marcha");
+System.out.println("Potencia de Extractores" + potenciaExtractores);
+    }
+return indiceCalidadAireInterior;
+}
+      public boolean cierreDePeajes ( double indiceCalidadAireInterior, double nivelCO){
+        if(indiceCalidadAireInterior > 80){
+peajesAbiertos = false;
+System.out.println("Baja Visibilidad");
+System.out.println("Detener Tráfico");
+System.out.println("Cerrando peajes");
+
+        }else if (nivelCO > 100){
+            System.out.println("El aire es peligroso");
+            System.out.println("Detener Tráfico");
+System.out.println("Cerrando peajes");
+peajesAbiertos = false;
+        }
+return peajesAbiertos;
+      }
+
+public boolean evacuacionTunel (boolean peajesAbiertos,double indiceCalidadAireInterior, double nivelCO){
+   double riesgototal = indiceCalidadAireInterior + nivelCO;
+    if(peajesAbiertos == false){
+        System.out.println("entra el protocolo crítico");
+        System.out.println("EVACUACIÓN DEL TÚNEL");
+        System.out.println("RIESGO TOTAL: " + riesgototal);
+        alarmaEvacuacion = true;
+        System.out.println("ALARMA EVACUACIÓN: " + alarmaEvacuacion);
+    }
+return alarmaEvacuacion;
+}
+
+public void historialIncidente(boolean alarmaEvacuacion){
+if(alarmaEvacuacion == true){
+    System.out.println("REGISTRO HISTORIAL DE INCIDENTES");
+     System.out.println("Ingrese la hora del incidente ");
+    horaIncidente = scanner.nextLine();
+    System.out.println("Cunatos vehículos estaban dentro");
+    scanner.nextInt();
+     vehiculosDentro = scanner.nextInt();
+    System.out.println("Nivel Co : "+ nivelCO);
+    System.out.println("indice Calidad Aire Interior : "+ nivelCO);
+    System.out.println("Estado emergencia	Evacuación");
+}
+}
     public static void main (String [] args){
         
     }
