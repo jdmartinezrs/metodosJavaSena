@@ -50,6 +50,7 @@ double productividadRepartidor = 0;
 double costoOperacion = 0;
 
 
+
     static Scanner scanner = new Scanner(System.in);
 
     public PaqueteEncomienda[] registroDePaquetes (){
@@ -93,10 +94,10 @@ public PaqueteEncomienda[] modificarEstadoEncomienda(PaqueteEncomienda[] encomie
     return encomienda;
 }
 
-public PaqueteEncomienda[] modificarUbicacionyTiempoActualEncomienda(
+public PaqueteEncomienda[] modificarUbicacionActualEncomienda(
         PaqueteEncomienda[] encomienda){
     System.out.println(
-            "Ingrese el número de guía del paquete que desea modificar:");
+            "Ingrese el número de guía del paquete que desea modificar la ubicación actual:");
     String guiaBuscada = scanner.nextLine();
     boolean encontrado = false;
     for (int i = 0; i < encomienda.length; i++) {
@@ -105,10 +106,7 @@ public PaqueteEncomienda[] modificarUbicacionyTiempoActualEncomienda(
             String nuevaUbicacion = scanner.nextLine();
             encomienda[i].setUbicacion(nuevaUbicacion);
             encontrado = true;
-            System.out.println("Ingrese el aproximado de tiempo de entrega actual en horas/minutos:");
-            double nuevoTiempoEntrega = scanner.nextDouble();
-            encomienda[i].setTiempoEntrega(nuevoTiempoEntrega );
-            System.out.println("Ubicación y tiempo actualizados");
+            System.out.println("Ubicación  actualizada");
             return encomienda;
         }
     }if(!encontrado){
@@ -117,29 +115,57 @@ public PaqueteEncomienda[] modificarUbicacionyTiempoActualEncomienda(
 }
 
     public static void main(String[] args){
-    Monitoreo_administracion_empresas_mensajeria encomienda =
-            new Monitoreo_administracion_empresas_mensajeria();
-    PaqueteEncomienda[] paquetes = encomienda.registroDePaquetes();
+    int menuPrincipal = 0;
+    Monitoreo_administracion_empresas_mensajeria encomienda = new Monitoreo_administracion_empresas_mensajeria();
+    PaqueteEncomienda[] paquetes = null ;  
+    while( menuPrincipal != 4){
+            System.out.println("Bienvenido al sistema de monitoreo de encomiendas inteligente");
+            System.out.println("Ingrese #1: para registrar una encomienda");
+            System.out.println("Ingrese #2: para mofificar estado  de una encomienda");
+            System.out.println("Ingrese #3: para mofificar ubicación de una encomienda");
+            System.out.println("Ingrese #4: para salir");
+             menuPrincipal = scanner.nextInt();
+scanner.nextLine();
+
+             switch(menuPrincipal ){
+                case 1:
+                 paquetes =  encomienda.registroDePaquetes();
     for(int i = 0; i < paquetes.length; i++){
         System.out.println(paquetes[i].numeroGuia);
         System.out.println(paquetes[i].ubicaacionActual);
         System.out.println(paquetes[i].tiempoEntrega);
         System.out.println(paquetes[i].estadoEntrega);
+    } break;
+
+    case 2: 
+    if(paquetes != null){
+              encomienda.modificarEstadoEncomienda(paquetes);
+       for(int i = 0; i < paquetes.length; i++){
+        System.out.println(paquetes[i].numeroGuia);
+        System.out.println(paquetes[i].ubicaacionActual);
+        System.out.println(paquetes[i].tiempoEntrega);
+        System.out.println(paquetes[i].estadoEntrega);
+        if (paquetes[i].estadoEntrega.equals("ENTREGADO")){
+            System.out.println("El paquete ha llegado a su destino");
+        }
     }
-    encomienda.modificarEstadoEncomienda(paquetes);
+}break;
+
+    case 3:
+if(paquetes != null){
+      encomienda.modificarUbicacionActualEncomienda(paquetes);
        for(int i = 0; i < paquetes.length; i++){
         System.out.println(paquetes[i].numeroGuia);
         System.out.println(paquetes[i].ubicaacionActual);
         System.out.println(paquetes[i].tiempoEntrega);
         System.out.println(paquetes[i].estadoEntrega);
     }
-    encomienda.modificarUbicacionyTiempoActualEncomienda(paquetes);
-       for(int i = 0; i < paquetes.length; i++){
-        System.out.println(paquetes[i].numeroGuia);
-        System.out.println(paquetes[i].ubicaacionActual);
-        System.out.println(paquetes[i].tiempoEntrega);
-        System.out.println(paquetes[i].estadoEntrega);
+             }      break;
+case 4:
+System.out.println("Saliendo del programa");
     }
+}
+
 }
 }
 
