@@ -61,7 +61,11 @@ public double registrarFlujoNeutronico(){
     System.out.println("Sensor neutrónico registra flujo de neutrones ");
     System.out.println("Ingrese la cantidad de neutrones actual");
     flujoNeutrones =  scanner.nextDouble();
-    if(flujoNeutrones >= 0 && flujoNeutrones < 300){
+    if(flujoNeutrones == 0){
+        contencionTotal = true;
+        System.out.println("CONTENCIÓN TOTAL ACTIVADA");
+    }
+    else if(flujoNeutrones > 0 && flujoNeutrones < 300){
         System.out.println("Flujo ESTABLE");
     }else if (flujoNeutrones >= 301 && flujoNeutrones < 700){
         System.out.println("Flujo ELEVADO");
@@ -79,10 +83,25 @@ public double revisionNivelRefrigerante(){
                 System.out.println("Sensor nivel registra el porcentaje de Refrijerante actual");
                 System.out.println("Ingrese el nivel de refrijerante");
                 nivelRefrigerante = scanner.nextDouble();
-                 if(nivelRefrigerante >= 0 && nivelRefrigerante < 300){
-                System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
-                System.out.println("Flujo ESTABLE");
-        
+                 if(nivelRefrigerante >= 0 && nivelRefrigerante < 20){
+
+        System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
+        System.out.println("EMERGENCIA");
+
+        scramActivo = true;
+
+        System.out.println("⚠ SCRAM ACTIVADO");
+        System.out.println("Inundando núcleo con boro");
+        System.out.println("Insertando barras de control");
+        System.out.println("Deteniendo reacción nuclear");
+
+    }else if(nivelRefrigerante < 0){
+
+        contencionTotal = true;
+
+        System.out.println("⚠ ERROR DE SENSOR");
+        System.out.println("CONTENCIÓN TOTAL ACTIVADA");
+       
     }else if (nivelRefrigerante >= 80 && nivelRefrigerante < 100){
         System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
         System.out.println("SEGURO");
@@ -139,21 +158,41 @@ public double controlBarrasGrafito (double factorReactividadNucleo){
     }else if(factorReactividadNucleo >= 601 && factorReactividadNucleo <= 800){
         System.out.println("INSERTAR BARRAS DE GRAFITO");
         barrasInsertadas = true;
+        if(barrasInsertadas == true){
+        factorReactividadNucleo= factorReactividadNucleo - 250;
+        }
         System.out.println("BARRAS DE GRAFITO INSERTADAS " + barrasInsertadas);
      }if(factorReactividadNucleo > 800){
         System.out.println("Estado reactor: EMERGENCIA NUCLEAR");
         System.out.println("factor Reactividad Nucleo crítico SCRAM ");
         scramActivo = true;
         System.out.println(" SCRAM Activo " + scramActivo  );
+        System.out.println("parada inmediata del reactor");
+        System.out.println("Insertar barras\tFrenar fisión\r\n" + //
+                        "Liberar boro\tAbsorber neutrones\r\n" + //
+                        "Cortar potencia\tSeguridad");
+
     }
 return factorReactividadNucleo;
 }
+
+public double generacionCienPorcientoRevision (double factorReactividadNucleo){
+if(factorReactividadNucleo >= 0 && factorReactividadNucleo <= 300){
+        System.out.println("Barras parcialmente retiradas");
+    }else if(factorReactividadNucleo >= 301 && factorReactividadNucleo <= 600){
+        System.out.println("Barras parcialmente retiradas");}
+        return factorReactividadNucleo;
+}
+
+
+
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
 double SensorNeutronico = AtomoSafe.registrarFlujoNeutronico();
 double SensorNivel = AtomoSafe.revisionNivelRefrigerante();
-double FRN = AtomoSafe.encontrarfactorReactividadNucleo(SensorNeutronico,SensorNivel);
+double FRN = AtomoSafe.encontrarfactorReactividadNucleo(SensorNivel, SensorNeutronico);
 double MS = AtomoSafe.calcularCuantoFaltaParaLlegarAlPuntoCritico(FRN);
 double barras= AtomoSafe.controlBarrasGrafito(FRN);
+double generacionCien= AtomoSafe.generacionCienPorcientoRevision(FRN);
     }
 }
