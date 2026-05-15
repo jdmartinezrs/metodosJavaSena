@@ -57,7 +57,7 @@ if(nivelCO >=0 && nivelCO <= 25){
 return nivelCO;
     }
 
-    public double densidadVisibilidad (){
+    public double densidadVisibilidad(){
         System.out.println("sensor láser: Ingrese los niveles de desidad visibilidad");
         densidadVisibilidad = scanner.nextDouble();
         return densidadVisibilidad;
@@ -105,7 +105,12 @@ System.out.println("Cerrando peajes");
             System.out.println("Detener Tráfico");
 System.out.println("Cerrando peajes");
 peajesAbiertos = false;
-        }
+        }else {
+
+        peajesAbiertos = true;
+        System.out.println("Peajes abiertos");
+        System.out.println("Tráfico permitido");
+    }
 return peajesAbiertos;
       }
 
@@ -121,20 +126,28 @@ public boolean evacuacionTunel (boolean peajesAbiertos,double indiceCalidadAireI
 return alarmaEvacuacion;
 }
 
-public void historialIncidente(boolean alarmaEvacuacion){
+public void historialIncidente(boolean alarmaEvacuacion,double indiceCalidadAireInterior, double nivelCO){
 if(alarmaEvacuacion == true){
     System.out.println("REGISTRO HISTORIAL DE INCIDENTES");
-     System.out.println("Ingrese la hora del incidente ");
+    System.out.println("Ingrese la hora del incidente ");
+    scanner.nextLine();
     horaIncidente = scanner.nextLine();
     System.out.println("Cunatos vehículos estaban dentro");
-    scanner.nextInt();
-     vehiculosDentro = scanner.nextInt();
+    vehiculosDentro = scanner.nextInt();
     System.out.println("Nivel Co : "+ nivelCO);
-    System.out.println("indice Calidad Aire Interior : "+ nivelCO);
+    System.out.println("indice Calidad Aire Interior : "+ indiceCalidadAireInterior);
     System.out.println("Estado emergencia	Evacuación");
 }
 }
     public static void main (String [] args){
-        
+        Monitor_purificacion_aire_en_tunel_sena tunel = new Monitor_purificacion_aire_en_tunel_sena();
+        double CO = tunel.medirNivelesCO();
+        double DV = tunel.densidadVisibilidad();
+        double ICAI = tunel.indiceCalidadAireInterior(CO,DV);
+        double extractor = tunel.controlExtractores(ICAI);
+        boolean peajes = tunel.cierreDePeajes(ICAI,CO);
+        boolean evacuacion = tunel.evacuacionTunel(peajes,ICAI,CO);
+        tunel.historialIncidente(evacuacion,ICAI,CO);
+
     }
 }
