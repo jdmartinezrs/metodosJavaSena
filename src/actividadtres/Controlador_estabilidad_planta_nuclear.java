@@ -44,6 +44,7 @@ public class Controlador_estabilidad_planta_nuclear {
     boolean perdidaRefrigerante = false; // Falla refrigeración
 
     //Variables de Seguridad
+    double margenSeguridad = 0;
     boolean barrasInsertadas = false; //Estado barras control
     boolean scramActivo = false; //Emergencia nuclear
     boolean contencionTotal = false; //Aislamiento reactor
@@ -110,6 +111,21 @@ public double encontrarfactorReactividadNucleo(double nivelRefrigerante, double 
         System.out.println("Estado reactor: EMERGENCIA NUCLEAR");
     }
     return factorReactividadNucleo;
+}
+
+public double normaDeSeguridadNuclear(){
+    
+    double TemperaturaDeFusionDeUranio = 2800; //temperatura crítica
+//Si el núcleo alcanza esa temperatura:
+//→ posible desastre nuclear.
+return TemperaturaDeFusionDeUranio;
+}
+
+public double calcularCuantoFaltaParaLlegarAlPuntoCritico (double TemperaturaDeFusionDeUranio ){
+    System.out.println("Sensor térmico: cual es la temperatura actua del núcleo");
+     temperaturaNucleo = scanner.nextDouble();
+     margenSeguridad = TemperaturaDeFusionDeUranio - temperaturaNucleo;
+return margenSeguridad;
 }
 
     public static void main (String [] args){
