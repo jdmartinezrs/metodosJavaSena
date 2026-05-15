@@ -34,7 +34,7 @@ public class Controlador_estabilidad_planta_nuclear {
     
     //Nucleares
     double nivelRefrigerante = 0; // Neutrones/cm²
-    double factorReactividad = 0; //Nivel actividad nuclear
+    double factorReactividadNucleo = 0; //Nivel actividad nuclear
     double temperaturaNucleo = 0; //temperatura reactor
     double presionReactor = 0; //Presión Interna
     double flujoNeutrones = 0;
@@ -98,13 +98,24 @@ public double revisionNivelRefrigerante(){
 return nivelRefrigerante;
 }
 //FACTOR DE REACTIVIDAD DEL NÚCLEO
-public double FactorReactividadNucleo(){
-
+public double encontrarfactorReactividadNucleo(double nivelRefrigerante, double flujoNeutrones){
+    factorReactividadNucleo = (flujoNeutrones*0.8)-(nivelRefrigerante*0.2);
+    if(factorReactividadNucleo >= 0 && factorReactividadNucleo <= 300){
+        System.out.println("Estado reactor: ESTABLE");
+    } if(factorReactividadNucleo >= 301 && factorReactividadNucleo <= 600){
+        System.out.println("Estado reactor: RIESGO MODERADO");
+    } if(factorReactividadNucleo >= 601 && factorReactividadNucleo <= 800){
+        System.out.println("Estado reactor: REACTIVIDAD ALTA");
+    }if(factorReactividadNucleo > 800){
+        System.out.println("Estado reactor: EMERGENCIA NUCLEAR");
+    }
+    return factorReactividadNucleo;
 }
 
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
 double SensorNeutronico = AtomoSafe.registrarFlujoNeutronico();
 double SensorNivel = AtomoSafe.revisionNivelRefrigerante();
+double FRN = AtomoSafe.encontrarfactorReactividadNucleo(SensorNeutronico,SensorNivel);
     }
 }
