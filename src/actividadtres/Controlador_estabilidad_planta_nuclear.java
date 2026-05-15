@@ -50,6 +50,8 @@ public class Controlador_estabilidad_planta_nuclear {
     boolean contencionTotal = false; //Aislamiento reactor
     boolean reactorActivo = false; //Reactor operando
 
+    double velocidadCalentamiento = 0;
+    double tiempoTemperaturaCritica = 0;
     Scanner scanner = new Scanner(System.in); 
     /*
 Sensor neutrónico	Flujo de neutrones
@@ -90,7 +92,7 @@ public double revisionNivelRefrigerante(){
 
         scramActivo = true;
 
-        System.out.println("⚠ SCRAM ACTIVADO");
+        System.out.println("SCRAM ACTIVADO");
         System.out.println("Inundando núcleo con boro");
         System.out.println("Insertando barras de control");
         System.out.println("Deteniendo reacción nuclear");
@@ -99,7 +101,7 @@ public double revisionNivelRefrigerante(){
 
         contencionTotal = true;
 
-        System.out.println("⚠ ERROR DE SENSOR");
+        System.out.println("ERROR DE SENSOR");
         System.out.println("CONTENCIÓN TOTAL ACTIVADA");
        
     }else if (nivelRefrigerante >= 80 && nivelRefrigerante < 100){
@@ -184,7 +186,19 @@ if(factorReactividadNucleo >= 0 && factorReactividadNucleo <= 300){
         return factorReactividadNucleo;
 }
 
+public double calcularTiempoRestanteParaTemperaturaCritica (double TemperaturaDeFusionDeUranio
+   ){
+    System.out.println("Ingrese velocidad de calentamiento");
+    velocidadCalentamiento = scanner.nextDouble();
 
+ double tiempoTemperaturaCritica = (TemperaturaDeFusionDeUranio - temperaturaNucleo) /velocidadCalentamiento;
+  System.out.println(
+"Tiempo estimado para temperatura crítica: "
++ tiempoTemperaturaCritica + " minutos"
+);
+ return tiempoTemperaturaCritica;
+
+}
 
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
@@ -194,5 +208,7 @@ double FRN = AtomoSafe.encontrarfactorReactividadNucleo(SensorNivel, SensorNeutr
 double MS = AtomoSafe.calcularCuantoFaltaParaLlegarAlPuntoCritico(FRN);
 double barras= AtomoSafe.controlBarrasGrafito(FRN);
 double generacionCien= AtomoSafe.generacionCienPorcientoRevision(FRN);
-    }
+double norma = AtomoSafe.normaDeSeguridadNuclear();
+   double TTC = AtomoSafe.calcularTiempoRestanteParaTemperaturaCritica(norma);
+}
 }
