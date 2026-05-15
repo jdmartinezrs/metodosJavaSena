@@ -103,6 +103,8 @@ public double revisionNivelRefrigerante(){
 
         System.out.println("ERROR DE SENSOR");
         System.out.println("CONTENCIÓN TOTAL ACTIVADA");
+         System.out.println("CONTENCIÓN TOTAL ACTIVADA");
+
        
     }else if (nivelRefrigerante >= 80 && nivelRefrigerante < 100){
         System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
@@ -113,9 +115,6 @@ public double revisionNivelRefrigerante(){
     }else if(nivelRefrigerante >= 20 && nivelRefrigerante < 49){
         System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
         System.out.println("RIESGO ALTO");
-}else if(nivelRefrigerante < 20){
-        System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
-        System.out.println("EMERGENCIA");
 }  
 return nivelRefrigerante;
 }
@@ -200,6 +199,41 @@ public double calcularTiempoRestanteParaTemperaturaCritica (double TemperaturaDe
 
 }
 
+public void informeDiagnostico (double factorReactividadNucleo ,double nivelRefrigerante ){
+
+    if(factorReactividadNucleo > 800){
+         System.out.println("Datos del informe");
+         System.out.println("Ingresela hora del incidente");
+         String horaIncidente = scanner.nextLine();
+
+         System.out.println("Reactividad previa"+margenSeguridad);
+         System.out.println("Nivel de refrigerante "+nivelRefrigerante +"%");
+         System.out.println("Temperatura del núcleo "+ temperaturaNucleo);
+          System.out.println("Estado reactor	SCRAM");
+         System.out.println("Hora del incidente" + horaIncidente);
+    }else if(nivelRefrigerante >= 0 && nivelRefrigerante < 20){
+ System.out.println("Datos del informe");
+         System.out.println("Ingresela hora del incidente");
+         String horaIncidente = scanner.nextLine();
+
+         System.out.println("Reactividad previa"+margenSeguridad);
+         System.out.println("Nivel de refrigerante "+nivelRefrigerante +"%");
+         System.out.println("Temperatura del núcleo "+ temperaturaNucleo);
+          System.out.println("Estado reactor	SCRAM");
+         System.out.println("Hora del incidente" + horaIncidente);
+    }else if(nivelRefrigerante < 0){
+        System.out.println("Datos del informe");
+         System.out.println("Ingresela hora del incidente");
+         String horaIncidente = scanner.nextLine();
+
+         System.out.println("Reactividad previa"+margenSeguridad);
+         System.out.println("Nivel de refrigerante "+nivelRefrigerante +"%");
+         System.out.println("Temperatura del núcleo "+ temperaturaNucleo);
+         System.out.println("Estado contencion Total");
+         System.out.println("Hora del incidente" + horaIncidente);
+    }
+}
+
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
 double SensorNeutronico = AtomoSafe.registrarFlujoNeutronico();
@@ -209,6 +243,7 @@ double MS = AtomoSafe.calcularCuantoFaltaParaLlegarAlPuntoCritico(FRN);
 double barras= AtomoSafe.controlBarrasGrafito(FRN);
 double generacionCien= AtomoSafe.generacionCienPorcientoRevision(FRN);
 double norma = AtomoSafe.normaDeSeguridadNuclear();
-   double TTC = AtomoSafe.calcularTiempoRestanteParaTemperaturaCritica(norma);
+double TTC = AtomoSafe.calcularTiempoRestanteParaTemperaturaCritica(norma);
+AtomoSafe.informeDiagnostico(FRN,SensorNivel );
 }
 }
