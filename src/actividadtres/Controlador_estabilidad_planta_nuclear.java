@@ -33,12 +33,13 @@ public class Controlador_estabilidad_planta_nuclear {
     //  aseguren que la lógica de software responda correctamente ante condiciones de riesgo extremo. 
     
     //Nucleares
-    double flujoNeutrones = 0; // Neutrones/cm²
+    double nivelRefrigerante = 0; // Neutrones/cm²
     double factorReactividad = 0; //Nivel actividad nuclear
     double temperaturaNucleo = 0; //temperatura reactor
     double presionReactor = 0; //Presión Interna
+    double flujoNeutrones = 0;
     //Refrigeración
-    double nivelRefrigerante = 0; //Cantidad Líquido moderador
+  //Cantidad Líquido moderador
     double temperaturaRefrijerante = 0; //Temperatura refrigerante
     boolean perdidaRefrigerante = false; // Falla refrigeración
 
@@ -55,7 +56,7 @@ Sensor térmico	Temperatura núcleo
 Sensor presión	Presión reactor
 Sensor nivel	Refrigerante líquido */
 
-public double registrarFlujoNeutronico (){
+public double registrarFlujoNeutronico(){
     System.out.println("Sensor neutrónico registra flujo de neutrones ");
     System.out.println("Ingrese la cantidad de neutrones actual");
     flujoNeutrones =  scanner.nextDouble();
@@ -71,17 +72,39 @@ public double registrarFlujoNeutronico (){
 return flujoNeutrones;
 }
 
+public double revisionNivelRefrigerante(){
+    System.out.println("Sin refrigeración:\r\n" + //
+                "→ el reactor puede fundirse.");
+                System.out.println("Sensor nivel registra el porcentaje de Refrijerante actual");
+                System.out.println("Ingrese el nivel de refrijerante");
+                nivelRefrigerante = scanner.nextDouble();
+                 if(nivelRefrigerante >= 0 && nivelRefrigerante < 300){
+                System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
+                System.out.println("Flujo ESTABLE");
+        
+    }else if (nivelRefrigerante >= 80 && nivelRefrigerante < 100){
+        System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
+        System.out.println("SEGURO");
+    }else if (nivelRefrigerante >= 50 && nivelRefrigerante < 79){
+        System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
+        System.out.println("PRECAUCIÓN");
+    }else if(nivelRefrigerante >= 20 && nivelRefrigerante < 49){
+        System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
+        System.out.println("RIESGO ALTO");
+}else if(nivelRefrigerante < 20){
+        System.out.println("Nivel refrigerante: " + nivelRefrigerante + "%");
+        System.out.println("EMERGENCIA");
+}  
+return nivelRefrigerante;
+}
+//FACTOR DE REACTIVIDAD DEL NÚCLEO
+public double FactorReactividadNucleo(){
 
+}
 
-
-
-
-
-
-    
-    
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
-double SensorNeutrónico = AtomoSafe.registrarFlujoNeutronico();
+double SensorNeutronico = AtomoSafe.registrarFlujoNeutronico();
+double SensorNivel = AtomoSafe.revisionNivelRefrigerante();
     }
 }
