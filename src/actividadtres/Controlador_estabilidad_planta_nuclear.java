@@ -128,10 +128,32 @@ public double calcularCuantoFaltaParaLlegarAlPuntoCritico (double TemperaturaDeF
 return margenSeguridad;
 }
 
+    /**Las barras absorben neutrones.
+Menos neutrones:
+→ menos reacción nuclear. */
+public double controlBarrasGrafito (double factorReactividadNucleo){
+    if(factorReactividadNucleo >= 0 && factorReactividadNucleo <= 300){
+        System.out.println("Mantener Energía");
+    }else if(factorReactividadNucleo >= 301 && factorReactividadNucleo <= 600){
+        System.out.println("Mantener Energía");
+    }else if(factorReactividadNucleo >= 601 && factorReactividadNucleo <= 800){
+        System.out.println("INSERTAR BARRAS DE GRAFITO");
+        barrasInsertadas = true;
+        System.out.println("BARRAS DE GRAFITO INSERTADAS " + barrasInsertadas);
+     }if(factorReactividadNucleo > 800){
+        System.out.println("Estado reactor: EMERGENCIA NUCLEAR");
+        System.out.println("factor Reactividad Nucleo crítico SCRAM ");
+        scramActivo = true;
+        System.out.println(" SCRAM Activo " + scramActivo  );
+    }
+return factorReactividadNucleo;
+}
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
 double SensorNeutronico = AtomoSafe.registrarFlujoNeutronico();
 double SensorNivel = AtomoSafe.revisionNivelRefrigerante();
 double FRN = AtomoSafe.encontrarfactorReactividadNucleo(SensorNeutronico,SensorNivel);
+double MS = AtomoSafe.calcularCuantoFaltaParaLlegarAlPuntoCritico(FRN);
+double barras= AtomoSafe.controlBarrasGrafito(FRN);
     }
 }
