@@ -1,8 +1,11 @@
 package actividadtres;
+import java.util.Scanner;
+
 
 public class Controlador_estabilidad_planta_nuclear {
     //Usted debe programar el sistema de gestión térmica de las barras de combustible
     //  en una planta de generación nucleoeléctrica de última generación.
+
     //  El software recibe como señales de entrada el flujo de neutrones por centímetro cuadrado 
     // y el nivel del refrigerante líquido en el tanque de moderación. 
     // A partir de estos valores, el programa debe procesar el "Factor de Reactividad del Núcleo".
@@ -18,16 +21,67 @@ public class Controlador_estabilidad_planta_nuclear {
     // y si se detecta una pérdida de refrigerante que comprometa la refrigeración,
     //  se debe activar el protocolo de "Parada de Emergencia Scram"
     // , inundando el núcleo con boro.
+
     //  La precisión en la programación es una cuestión de seguridad pública;
     //  si los sensores de neutrones reportan un valor de cero durante la operación activa
     //  o si el nivel de refrigerante se reporta como un valor negativo, 
     // el programa debe activar el protocolo de "Aislamiento de Contención Total". 
+    
     // Este método debe devolver un informe de diagnóstico detallado que contenga la reactividad previa al fallo,
     //  el nivel de líquido registrado y el tiempo estimado para alcanzar la temperatura crítica.
     //  El aprendiz enfrentará el reto de diseñar métodos que manejen variables de alta precisión y
     //  aseguren que la lógica de software responda correctamente ante condiciones de riesgo extremo. 
+    
+    //Nucleares
+    double flujoNeutrones = 0; // Neutrones/cm²
+    double factorReactividad = 0; //Nivel actividad nuclear
+    double temperaturaNucleo = 0; //temperatura reactor
+    double presionReactor = 0; //Presión Interna
+    //Refrigeración
+    double nivelRefrigerante = 0; //Cantidad Líquido moderador
+    double temperaturaRefrijerante = 0; //Temperatura refrigerante
+    boolean perdidaRefrigerante = false; // Falla refrigeración
+
+    //Variables de Seguridad
+    boolean barrasInsertadas = false; //Estado barras control
+    boolean scramActivo = false; //Emergencia nuclear
+    boolean contencionTotal = false; //Aislamiento reactor
+    boolean reactorActivo = false; //Reactor operando
+
+    Scanner scanner = new Scanner(System.in); 
+    /*
+Sensor neutrónico	Flujo de neutrones
+Sensor térmico	Temperatura núcleo
+Sensor presión	Presión reactor
+Sensor nivel	Refrigerante líquido */
+
+public double registrarFlujoNeutronico (){
+    System.out.println("Sensor neutrónico registra flujo de neutrones ");
+    System.out.println("Ingrese la cantidad de neutrones actual");
+    flujoNeutrones =  scanner.nextDouble();
+    if(flujoNeutrones >= 0 && flujoNeutrones < 300){
+        System.out.println("Flujo ESTABLE");
+    }else if (flujoNeutrones >= 301 && flujoNeutrones < 700){
+        System.out.println("Flujo ELEVADO");
+    }else if (flujoNeutrones >= 701 && flujoNeutrones < 1000){
+        System.out.println("Flujo PELIGROSO");
+    }else if(flujoNeutrones> 1000){
+        System.out.println("Flujo CRÍTICO");
+}
+return flujoNeutrones;
+}
+
+
+
+
+
+
+
+
+    
+    
     public static void main (String [] args){
         Controlador_estabilidad_planta_nuclear AtomoSafe = new  Controlador_estabilidad_planta_nuclear();
-
+double SensorNeutrónico = AtomoSafe.registrarFlujoNeutronico();
     }
 }
