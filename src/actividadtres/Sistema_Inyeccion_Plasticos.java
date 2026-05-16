@@ -1,6 +1,13 @@
 package actividadtres;
 import java.util.Scanner;
-public class Sistema_Inyeccion_Plasticos{
+
+
+interface InyeccionPlasticos {
+ int viscosidadPolimero = 400;
+      int fuerzaDeCierre = 900;
+}
+
+public class Sistema_Inyeccion_Plasticos implements  InyeccionPlasticos{
     //Requerimiento del Cliente: 
     // "Necesitamos un componente que controle la presión de inyección
     //  y la temperatura del molde en nuestras máquinas de extrusión.
@@ -20,6 +27,8 @@ public class Sistema_Inyeccion_Plasticos{
 
      //  El programador debe asegurar que la validación de estos límites
      //  sea el primer paso antes de cualquier cálculo de ingeniería."
+    
+
      Scanner scanner = new Scanner(System.in);
 
      public static void main(String args[]){
